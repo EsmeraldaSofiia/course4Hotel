@@ -15,7 +15,7 @@ public partial class AdminServices : ContentPage
     {
         InitializeComponent();
 
-        // Прив'язка контексту сторінки до ViewModel
+        // Прив'язка контексту сторінкfи до ViewModel
         BindingContext = viewModel;
         _viewModel = viewModel;
 
