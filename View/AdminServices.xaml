@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="course4Hotel.View.AdminServices"
+             xmlns:vm="clr-namespace:course4Hotel.ViewModels"
+             xmlns:models="clr-namespace:course4Hotel.Models"
+             x:DataType="vm:OfServicesViewModel"
+             Title="Управління сервісами">
+    <Grid RowDefinitions="Auto, *">
+        <Label Grid.Row="0" 
+               Text="Сервіси"
+               FontAttributes="Bold" 
+               FontSize="18" 
+               Padding="10"/>
+
+        <Grid Grid.Row="1"
+              RowDefinitions="*, Auto, Auto">
+            <!-- Список сервісів -->
+            <CollectionView Grid.Row="0"
+                            ItemsSource="{Binding OfServices}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10"
+                                       Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:OfService">
+                        <Grid RowDefinitions="Auto, Auto, Auto, Auto"
+                              ColumnDefinitions="*, Auto"
+                              RowSpacing="5"
+                              Padding="5"
+                              BackgroundColor="#ECECEC">
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="{Binding Name, StringFormat='Назва: {0}'}"
+                                   FontAttributes="Bold"/>
+
+                            <Label Grid.Row="2"
+                                   Grid.Column="0"
+                                   Text="{Binding Price, StringFormat='Ціна: {0} грн'}"
+                                   FontSize="12"/>
+
+                            <Label Grid.Row="3"
+                                   Grid.Column="0"
+                                   Text="{Binding Description, StringFormat='Опис: {0}'}"
+                                   FontSize="12"/>
+
+                            <!-- Кнопка редагування -->
+                            <Button Grid.Row="0"
+                                    Grid.Column="1"
+                                    Text="Редагувати"
+                                    Padding="0"
+                                    HeightRequest="25"
+                                    FontSize="12"
+                                    CornerRadius="1"
+                                    Clicked="UnfoldFormClicked"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:OfServicesViewModel}}, Path=SetOperatingServiceCommand}"
+                                    CommandParameter="{Binding .}"/>
+
+                            <!-- Кнопка видалення -->
+                            <Button Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="Видалити"
+                                    WidthRequest="100"
+                                    Padding="0"
+                                    HeightRequest="25"
+                                    FontSize="12"
+                                    CornerRadius="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:OfServicesViewModel}}, Path=DeleteServiceCommand}"
+                                    CommandParameter="{Binding Id}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                        <Label Text="Сервісів не знайдено"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"/>
+                        <Label Text="Створіть новий сервіс за допомогою форми внизу"
+                               FontSize="14"
+                               HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+            </CollectionView>
+
+            <!-- Форма додавання/редагування сервісів -->
+            <Button x:Name="ServiceFormButton"
+                    VerticalOptions="End"
+                    WidthRequest="200"
+                    Clicked="UnfoldFormClicked"/>
+
+            <VerticalStackLayout Grid.Row="1"
+                                 x:Name="serviceBlock">
+                <BoxView Color="{DynamicResource Primary}"
+                         HeightRequest="1"/>
+                <Grid 
+                      RowDefinitions="*, Auto, Auto, Auto, Auto"
+                      ColumnDefinitions="Auto, Auto"
+                      BackgroundColor="#CCBFFA"
+                      Padding="10"
+                      RowSpacing="10">
+                    <VerticalStackLayout Grid.Row="0"
+                                         Grid.Column="0">
+                        <Label Text="Назва сервісу:" FontAttributes="Bold"/>
+                        <Entry Text="{Binding OperatingOfService.Name}"
+                               Placeholder="Введіть назву сервісу"
+                               Margin="0"
+                               BackgroundColor="#DAD1F9"/>
+                    </VerticalStackLayout>
+
+                    
+
+                    <VerticalStackLayout Grid.Row="1"
+                                         Grid.Column="0">
+                        <Label Text="Ціна сервісу:" FontAttributes="Bold"/>
+                        <Entry Text="{Binding OperatingOfService.Price}"
+                               Placeholder="Введіть ціну"
+                               Keyboard="Numeric"
+                               Margin="0"
+                               BackgroundColor="#DAD1F9"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="2"
+                                         Grid.Column="0"
+                                         Grid.ColumnSpan="2">
+                        <Label Text="Опис сервісу:" FontAttributes="Bold"/>
+                        <Entry Text="{Binding OperatingOfService.Description}"
+                               Placeholder="Введіть опис сервісу"
+                               Margin="0"
+                               BackgroundColor="#DAD1F9"/>
+                    </VerticalStackLayout>
+
+                    <Button Grid.Row="3"
+                            Grid.ColumnSpan="2"
+                            WidthRequest="200"
+                            Text="Зберегти"
+                            HorizontalOptions="Center"
+                            VerticalOptions="End"
+                            Padding="50, 0"
+                            Clicked="UnfoldFormClicked"
+                            Command="{Binding SaveOfServiceCommand}">
+                    </Button>
+                </Grid>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>
