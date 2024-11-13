@@ -14,12 +14,12 @@ public partial class AddBooking : ContentPage
     private readonly BookingService _bookingService; 
     public ICommand SetRoomIdCommand { get; private set; }
 
-    // Ідентифікатор користувача, отриманий із сесії
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ
     public string userId;
-    // Ідентифікатор поточної кімнати
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     private string currentRoomId;
 
-    // Конструктор за замовчуванням
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public AddBooking()
     {
         InitializeComponent();
@@ -33,7 +33,7 @@ public partial class AddBooking : ContentPage
         currentRoomId = string.Empty;
         SetRoomIdCommand = new Command<string>(SetRoomId);
     }
-    //Конструктор із параметром ViewModel
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ViewModel
     public AddBooking(BookingViewModel bookingViewModel)
     {
         InitializeComponent();
@@ -46,28 +46,28 @@ public partial class AddBooking : ContentPage
         currentRoomId = string.Empty; 
     }
 
-    // Обробник події для кнопки пошуку кімнат
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅдії пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     public async void FindRoomsButton_Clicked(object sender, EventArgs e)
     {
         DateTime checkInDate = CheckInDate.Date;
         DateTime checkOutDate = CheckOutDate.Date;
 
-        // Перевірка коректності дат (дата виїзду повинна бути пізніше дати в'їзду)
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ'пїЅпїЅпїЅпїЅ)
         if (checkOutDate <= checkInDate)
         {
-            await DisplayAlert("Виберіть інші дати", "Дата виїзду має пізніше в'їзду", "OK");
+            await DisplayAlert("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ'пїЅпїЅпїЅпїЅ", "OK");
             return;
         }
         await _bookingViewModel.LoadRoomsAsync(checkInDate, checkOutDate);
     }
 
-    // Обробник події для відкривання кнопки виходу з облікового запису
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅдії пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     public void BlueButton_Clicked(object sender, EventArgs e)
     {
         Account_frame.IsVisible = !Account_frame.IsVisible;
     }
 
-    // Метод для встановлення ID оброблюваної кімнати
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     public async void SetRoomId(string roomId)
     {
         currentRoomId = roomId;
@@ -77,15 +77,15 @@ public partial class AddBooking : ContentPage
               .FirstOrDefault(r => r.Id == roomId);
         if (room != null)
         {
-            NumberLabel.Text = "Номер апартаментів: " + (await _bookingService.GetRoomNumberById(roomId)).ToString();
-        DatesLabel.Text = "на період " + CheckInDate.Date.ToString("dd.MM.yyyy") + " - " + CheckOutDate.Date.ToString("dd.MM.yyyy");
-        SummaryPriceLabel.Text = "До сплати: " + ((CheckOutDate.Date - CheckInDate.Date).Days * (await _bookingService.GetRoomPriceById(roomId))).ToString() + " UAH";
+            NumberLabel.Text = "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " + (await _bookingService.GetRoomNumberById(roomId)).ToString();
+        DatesLabel.Text = "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ " + CheckInDate.Date.ToString("dd.MM.yyyy") + " - " + CheckOutDate.Date.ToString("dd.MM.yyyy");
+        SummaryPriceLabel.Text = "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: " + ((CheckOutDate.Date - CheckInDate.Date).Days * (await _bookingService.GetRoomPriceById(roomId))).ToString() + " UAH";
             RoomImage.Source = room.ImageSource; 
         }
         bookingBlock.IsVisible = true;
     }
 
-    // Обробник події для збереження бронювання
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅдії пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public async void SaveBookingButton_Clicked(object sender, EventArgs e)
     {
         var booking = new Booking
@@ -102,13 +102,13 @@ public partial class AddBooking : ContentPage
         await _bookingViewModel.LoadRoomsAsync(CheckInDate.Date, CheckOutDate.Date);
     }
 
-    // Обробник події для скасування процесу бронювання
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅдії пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public async void CancelBookingProcessButton_Clicked(object sender, EventArgs e)
     {
         bookingBlock.IsVisible = false;
     }
 
-    // Обробник події для виходу з облікового запису
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅдії пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     public async void OnLogOutLabelTapped(object sender, TappedEventArgs e)
     {
         Account_frame.IsVisible = false;
@@ -117,9 +117,9 @@ public partial class AddBooking : ContentPage
         Shell.SetTabBarIsVisible(this, false); 
     }
 
-    // Обробник події для показу інформації про автора застосунку
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅдії пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public async void ShowAuthor_Button_Clicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Про автора", "цей застосунок був створений у ході виконання курсового проєкту \n\nстуденткою 45 групи спеціальності 121\nВСП 'ППФК НТУ 'ХПІ''\n\nЖаботинською Софією", "Чудово!");
+        await DisplayAlert("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ \n\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 45 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 121\nпїЅпїЅпїЅ 'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ 'пїЅПІ''\n\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ!");
     }
 }
