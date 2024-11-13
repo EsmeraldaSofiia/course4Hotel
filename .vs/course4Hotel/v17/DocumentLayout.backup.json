@@ -1,0 +1,495 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\course4Hotel\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\dataservices\\servicesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\dataservices\\servicesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\dataservices\\roomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\dataservices\\roomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\dataservices\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\dataservices\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\adminservices.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\adminservices.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\viewmodels\\ofservicesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\viewmodels\\ofservicesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\viewmodels\\bookingviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\viewmodels\\bookingviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\viewmodels\\roomsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\viewmodels\\roomsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\singinpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\singinpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\services.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\services.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\notificationsadmin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\notificationsadmin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\headerview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\headerview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\bookingreview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\bookingreview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\adminsignin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\adminsignin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\addbooking.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\addbooking.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\adminrooms.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\adminrooms.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\addbooking.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\addbooking.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\adminservices.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\adminservices.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\services.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\services.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\adminrooms.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\adminrooms.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\usernavigation.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\usernavigation.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\view\\singinpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\view\\singinpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\models\\ofservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\models\\ofservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|c:\\course4hotel\\course4hotel\\resources\\styles\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E1D23463-BF6A-496F-8D3A-71B64425AF12}|course4Hotel\\course4Hotel.csproj|solutionrelative:course4hotel\\resources\\styles\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 400,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AdminServices.xaml.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\AdminServices.xaml.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\AdminServices.xaml.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\AdminServices.xaml.cs",
+              "RelativeToolTip": "course4Hotel\\View\\AdminServices.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T19:34:25.068Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "HeaderView.xaml.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\HeaderView.xaml.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\HeaderView.xaml.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\HeaderView.xaml.cs",
+              "RelativeToolTip": "course4Hotel\\View\\HeaderView.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T19:37:28.689Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "BookingReview.xaml.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\BookingReview.xaml.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\BookingReview.xaml.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\BookingReview.xaml.cs",
+              "RelativeToolTip": "course4Hotel\\View\\BookingReview.xaml.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAYwEsAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T19:35:07.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AdminSignIn.xaml.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\AdminSignIn.xaml.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\AdminSignIn.xaml.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\AdminSignIn.xaml.cs",
+              "RelativeToolTip": "course4Hotel\\View\\AdminSignIn.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T19:34:42.816Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AdminRooms.xaml.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\AdminRooms.xaml.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\AdminRooms.xaml.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\AdminRooms.xaml.cs",
+              "RelativeToolTip": "course4Hotel\\View\\AdminRooms.xaml.cs",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAowJYAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T19:29:07.572Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AdminRooms.xaml",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\AdminRooms.xaml",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\AdminRooms.xaml",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\AdminRooms.xaml",
+              "RelativeToolTip": "course4Hotel\\View\\AdminRooms.xaml",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-13T18:55:13.458Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AddBooking.xaml.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\AddBooking.xaml.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\AddBooking.xaml.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\AddBooking.xaml.cs",
+              "RelativeToolTip": "course4Hotel\\View\\AddBooking.xaml.cs",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAwwHgAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T20:20:17.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AddBooking.xaml",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\AddBooking.xaml",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\AddBooking.xaml",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\AddBooking.xaml",
+              "RelativeToolTip": "course4Hotel\\View\\AddBooking.xaml",
+              "ViewState": "AgIAAD0BAAAAAAAAAAAAABYAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-13T18:49:12.478Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 443,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BookingService.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\DataServices\\BookingService.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\DataServices\\BookingService.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\DataServices\\BookingService.cs",
+              "RelativeToolTip": "course4Hotel\\DataServices\\BookingService.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAwFQAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T19:47:21.835Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RoomsViewModel.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\ViewModels\\RoomsViewModel.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\ViewModels\\RoomsViewModel.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\ViewModels\\RoomsViewModel.cs",
+              "RelativeToolTip": "course4Hotel\\ViewModels\\RoomsViewModel.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAUAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-12T17:50:22.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\MauiProgram.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\MauiProgram.cs",
+              "RelativeToolTip": "course4Hotel\\MauiProgram.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-12T18:42:03.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RoomService.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\DataServices\\RoomService.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\DataServices\\RoomService.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\DataServices\\RoomService.cs",
+              "RelativeToolTip": "course4Hotel\\DataServices\\RoomService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAEgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-12T17:50:37.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ServicesService.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\DataServices\\ServicesService.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\DataServices\\ServicesService.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\DataServices\\ServicesService.cs",
+              "RelativeToolTip": "course4Hotel\\DataServices\\ServicesService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-12T18:10:55.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BookingViewModel.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\ViewModels\\BookingViewModel.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\ViewModels\\BookingViewModel.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\ViewModels\\BookingViewModel.cs",
+              "RelativeToolTip": "course4Hotel\\ViewModels\\BookingViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T19:44:21.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OfServicesViewModel.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\ViewModels\\OfServicesViewModel.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\ViewModels\\OfServicesViewModel.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\ViewModels\\OfServicesViewModel.cs",
+              "RelativeToolTip": "course4Hotel\\ViewModels\\OfServicesViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-12T18:10:43.775Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SinginPage.xaml.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\SinginPage.xaml.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\SinginPage.xaml.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\SinginPage.xaml.cs",
+              "RelativeToolTip": "course4Hotel\\View\\SinginPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T20:18:09.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Services.xaml.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\Services.xaml.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\Services.xaml.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\Services.xaml.cs",
+              "RelativeToolTip": "course4Hotel\\View\\Services.xaml.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAgwEkAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T18:33:54.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "NotificationsAdmin.xaml",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\NotificationsAdmin.xaml",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\NotificationsAdmin.xaml",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\NotificationsAdmin.xaml",
+              "RelativeToolTip": "course4Hotel\\View\\NotificationsAdmin.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-13T19:39:21.41Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AdminServices.xaml",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\AdminServices.xaml",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\AdminServices.xaml",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\AdminServices.xaml",
+              "RelativeToolTip": "course4Hotel\\View\\AdminServices.xaml",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAAAFoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-13T19:10:42.935Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "LoginPage.xaml",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\LoginPage.xaml",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\LoginPage.xaml",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\LoginPage.xaml",
+              "RelativeToolTip": "course4Hotel\\View\\LoginPage.xaml",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAFcAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-13T15:07:40.848Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "LoginPage.xaml.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\LoginPage.xaml.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\LoginPage.xaml.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\LoginPage.xaml.cs",
+              "RelativeToolTip": "course4Hotel\\View\\LoginPage.xaml.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAgwFIAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T15:07:48.632Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Services.xaml",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\Services.xaml",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\Services.xaml",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\Services.xaml",
+              "RelativeToolTip": "course4Hotel\\View\\Services.xaml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAwAoAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-13T15:21:27.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "UserNavigation.xaml",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\UserNavigation.xaml",
+              "RelativeDocumentMoniker": "course4Hotel\\UserNavigation.xaml",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\UserNavigation.xaml",
+              "RelativeToolTip": "course4Hotel\\UserNavigation.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-13T15:21:07.632Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "OfService.cs",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\Models\\OfService.cs",
+              "RelativeDocumentMoniker": "course4Hotel\\Models\\OfService.cs",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\Models\\OfService.cs",
+              "RelativeToolTip": "course4Hotel\\Models\\OfService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-12T18:12:03.375Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "AppShell.xaml",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\AppShell.xaml",
+              "RelativeDocumentMoniker": "course4Hotel\\AppShell.xaml",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\AppShell.xaml",
+              "RelativeToolTip": "course4Hotel\\AppShell.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-12T18:42:00.678Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\App.xaml",
+              "RelativeDocumentMoniker": "course4Hotel\\App.xaml",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\App.xaml",
+              "RelativeToolTip": "course4Hotel\\App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-12T18:42:14.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "SinginPage.xaml",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\View\\SinginPage.xaml",
+              "RelativeDocumentMoniker": "course4Hotel\\View\\SinginPage.xaml",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\View\\SinginPage.xaml",
+              "RelativeToolTip": "course4Hotel\\View\\SinginPage.xaml",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAGAAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-06T14:16:10.091Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Styles.xaml",
+              "DocumentMoniker": "C:\\course4Hotel\\course4Hotel\\Resources\\Styles\\Styles.xaml",
+              "RelativeDocumentMoniker": "course4Hotel\\Resources\\Styles\\Styles.xaml",
+              "ToolTip": "C:\\course4Hotel\\course4Hotel\\Resources\\Styles\\Styles.xaml",
+              "RelativeToolTip": "course4Hotel\\Resources\\Styles\\Styles.xaml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-06T15:38:53.272Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
