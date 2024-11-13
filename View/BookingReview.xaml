@@ -2,11 +2,156 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="course4Hotel.View.BookingReview"
-             Title="BookingReview">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:vm="clr-namespace:course4Hotel.ViewModels"
+             xmlns:models="clr-namespace:course4Hotel.Models"
+             xmlns:local="clr-namespace:course4Hotel.View"
+             NavigationPage.HasNavigationBar="False"
+             Style="{StaticResource GradientPageStyle}">
+    <StackLayout>
+        <Grid RowDefinitions="80, Auto, Auto"
+              ColumnDefinitions="*">
+            <local:HeaderView  Grid.Row="0"/>
+            <Button ZIndex="2"
+                    BackgroundColor="Transparent"
+                    WidthRequest="190"
+                    HeightRequest="50"
+                    Clicked="ShowAuthor_Button_Clicked"
+                    Margin="-20, 0, 0, 0"></Button>
+            <Button TextColor="White"
+                BackgroundColor="Transparent"
+                FontAttributes="Bold"
+                CornerRadius="30"
+                WidthRequest="55"
+                HeightRequest="55"
+                BorderColor="Transparent"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                Margin="0, 12, 10, 0"
+                Grid.Row="0"
+                Clicked="BlueButton_Clicked"/>
+            <Image  Grid.Row="0"
+                ZIndex="2"
+                WidthRequest="55"
+                HeightRequest="55"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                Margin="0, 12, 10, 0"
+                Source="https://cdn-icons-png.flaticon.com/128/3293/3293473.png"/>
+
+            <Frame x:Name="Account_frame"
+                    BackgroundColor="#f5f2e6"
+                    Padding="5"
+                    CornerRadius="10"
+                    VerticalOptions="End"
+                    HorizontalOptions="End"
+                    WidthRequest="170"
+                    HeightRequest="40"
+                    Margin="0, 0, 10, -5"
+                    IsVisible="False"
+                    Grid.Row="0"
+                    Frame.ZIndex="2">
+                <Grid RowDefinitions="Auto"
+                       ColumnDefinitions="Auto, Auto"
+                       RowSpacing="5"
+                       Padding="5"
+                       VerticalOptions="Center"
+                       HorizontalOptions="End"
+                       BackgroundColor="#f5f2e6"
+                       Grid.ZIndex="1">
+                    <Image Source="https://cdn-icons-png.flaticon.com/128/4034/4034229.png"
+                            HeightRequest="20"
+                            Margin="0, 0, 5, 0"
+                            Grid.Column="0"/>
+                    <Label x:Name="LogOutLabel"
+                            Grid.Column="1"
+                            FontSize="16"
+                            TextColor="#c4372d"
+                            FontAttributes="Bold"
+                            Text="Вийти з акаунту"
+                            HorizontalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLogOutLabelTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </Frame>
+            <Label Text="Мої бронювання"
+                   FontAttributes="Bold"
+                   FontSize="18"
+                   Margin="10, 20, -5, 0"
+                   Grid.Row="1"/>
+
+            <Grid Grid.Row="2"
+                  RowDefinitions="*, Auto, Auto"
+                  Margin="0, 5, 0, 0"
+                  HeightRequest="500">
+                <CollectionView ItemsSource="{Binding BookingList}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="5"
+                   Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Booking">
+                            <Frame Margin="10, 0, 10, 0"
+                                   BorderColor="Transparent"
+                                   CornerRadius="15">
+                                <Frame.Background>
+                                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                                        <GradientStop Color="#75705a3f" Offset="0.0" />
+                                        <GradientStop Color="#CC083631" Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </Frame.Background>
+                                <Grid RowDefinitions="Auto, Auto, Auto, Auto"
+                                  ColumnDefinitions="*, Auto"
+                                  RowSpacing="5"
+                                  Padding="0"
+                                  BackgroundColor="Transparent">
+                                    <Label 
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="{Binding RoomNumber, StringFormat='{0} номер'}"
+                                        FontAttributes="Bold"
+                                        TextColor="White"
+                                        FontSize="16"/>
+                                    <Label Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding BookingDate, StringFormat='{0: dd.MM.yyyy}'}"
+                                       FontAttributes="Bold"
+                                       TextColor="White"
+                                       FontSize="14"/>
+
+                                    <Label Grid.Row="2"
+                                       Grid.Column="0"
+                                       Margin="15, 0, 0, 0"
+                                       Text="{Binding CheckInDate, StringFormat='Заселення: {0: dd.MM.yyyy     hh:mm} '}"
+                                      FontAttributes="Bold"
+                                        TextColor="White"
+                                           
+                                        FontSize="13"
+                                       />
+                                    <Label Grid.Row="3"
+                                       Grid.Column="0"
+                                       Margin="14, 0, 0, 0"
+                                       Text="{Binding CheckOutDate, StringFormat='Виселення: {0: dd.MM.yyyy     hh:mm}'}"
+                                       FontAttributes="Bold"
+                                       TextColor="White"
+                                       FontSize="13"
+                                       />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <VerticalStackLayout HorizontalOptions="Center"
+                     VerticalOptions="Center">
+                            <Label Text="Бронювань не знайдено"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                        </VerticalStackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </Grid>
+        </Grid>
+    </StackLayout>
 </ContentPage>

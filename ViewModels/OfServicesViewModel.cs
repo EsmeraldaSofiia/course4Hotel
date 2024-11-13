@@ -4,140 +4,82 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using course4Hotel.Data;
 using course4Hotel.Models;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using course4Hotel.View;
+using course4Hotel.DataServices;
+using System.Windows.Input;
+using Firebase.Database;
+using Syncfusion.Maui.Core.Converters;
 
 namespace course4Hotel.ViewModels
 {
     public partial class OfServicesViewModel : ObservableObject
     {
-        private readonly DatabaseContext _context;
+        private readonly ServicesService _servicesService; // Сервіс для роботи з базою даних
 
-        public OfServicesViewModel(DatabaseContext context)
+        public ObservableCollection<OfService> ServiceList { get; set; } // Список послуг для відображення в UI
+
+        [ObservableProperty]
+        private OfService _operatingOfService = new(); // Поточний сервіс, який редагується або створюється
+
+        [ObservableProperty]
+        private bool _isBusy; // Прапор, що вказує, чи виконується операція (завантаження, збереження тощо)
+
+        [ObservableProperty]
+        private string _busyText; // Текст, який відображається під час виконання операції
+
+        public ICommand SetOperatingOfServiceCommand { get; } // Команда для вибору сервісу для редагування
+        public ICommand SaveOfServiceCommand { get; } // Команда для збереження сервісу (створення або оновлення)
+        public ICommand DeleteOfServiceCommand { get; } // Команда для видалення сервісу
+
+        // Конструктор для ініціалізації сервісу та списку послуг
+        public OfServicesViewModel(FirebaseClient firebaseClient)
         {
-            _context = context;
+            _servicesService = new ServicesService(firebaseClient); // Ініціалізація сервісу для роботи з Firebase
+            ServiceList = new ObservableCollection<OfService>(); // Створення порожнього списку послуг
+            _ = LoadOfServicesAsync(); // Завантаження послуг з Firebase
+
+            // Ініціалізація команд для вибору, збереження та видалення сервісів
+            SetOperatingOfServiceCommand = new Command<OfService>(SetOperatingOfService);
+            SaveOfServiceCommand = new Command(async () => await SaveOfServiceAsync(OperatingOfService));
+            DeleteOfServiceCommand = new Command<OfService>(async (ofService) => await DeleteOfServiceAsync(ofService));
         }
 
-        [ObservableProperty]
-        private ObservableCollection<OfService> _ofServices = new();
-
-        [ObservableProperty]
-        private OfService _operatingOfService = new();
-
-        [ObservableProperty]
-        private bool _isBusy;
-
-        [ObservableProperty]
-        private string _busyText;
-
-        // Команда для завантаження усіх сервісів
-        [RelayCommand]
+        // Команда для завантаження усіх сервісів з бази даних
         public async Task LoadOfServicesAsync()
         {
-            await ExecuteAsync(async () =>
+            var ofServices = await _servicesService.GetAllServicesAsync(); // Отримання списку послуг з Firebase
+            ServiceList.Clear(); // Очищення наявного списку послуг
+            foreach (var ofService in ofServices)
             {
-                OfServices.Clear();
-                var services = await _context.GetAllAsync<OfService>();
-                if (services is not null && services.Any())
-                {
-                    OfServices ??= new ObservableCollection<OfService>();
-
-                    foreach (var service in services)
-                    {
-                        OfServices.Add(service);
-                    }
-                }
-            }, "Fetching services...");
+                ServiceList.Add(ofService); // Додавання послуг до списку
+            }
         }
 
         // Команда для встановлення поточного редагованого сервісу
-        [RelayCommand]
-        private void SetOperatingOfService(OfService? ofService) => OperatingOfService = ofService ?? new();
+        private void SetOperatingOfService(OfService? ofService) => OperatingOfService = ofService ?? new(); // Якщо сервіс не знайдений, створюється новий
 
         // Команда для збереження сервісу (створення або оновлення)
-        [RelayCommand]
-        private async Task SaveOfServiceAsync()
+        public async Task SaveOfServiceAsync(OfService ofService)
         {
-            if (OperatingOfService is null)
-                return;
-
-            var (isValid, errorMessage) = OperatingOfService.Validate();
-            if (!isValid)
-            {
-                await Shell.Current.DisplayAlert("Validation Error", errorMessage, "Ok");
-                return;
-            }
-
-            var busyText = OperatingOfService.Id == 0 ? "Creating Service..." : "Updating Service...";
-            await ExecuteAsync(async () =>
-            {
-                if (OperatingOfService.Id == 0)
-                {
-                    // Створення сервісу
-                    await _context.AddItemAsync<OfService>(OperatingOfService);
-                    OfServices.Add(OperatingOfService);
-                }
-                else
-                {
-                    // Оновлення сервісу
-                    if (await _context.UpdateItemAsync<OfService>(OperatingOfService))
-                    {
-                        var serviceCopy = OperatingOfService.Clone;
-
-                        var index = OfServices.IndexOf(OperatingOfService);
-                        OfServices.RemoveAt(index);
-
-                        OfServices.Insert(index, serviceCopy);
-                    }
-                    else
-                    {
-                        await Shell.Current.DisplayAlert("Error", "Service updation error", "Ok");
-                        return;
-                    }
-                }
-                SetOperatingOfServiceCommand.Execute(new());
-            }, busyText);
+            await _servicesService.SaveOfService(ofService); // Викликається метод для збереження сервісу в Firebase
+            await LoadOfServicesAsync(); // Оновлення списку послуг після збереження
+            OperatingOfService = new OfService(); // Очищення поточного сервісу
         }
 
-        // Команда для видалення сервісу
-        [RelayCommand]
-        private async Task DeleteOfServiceAsync(int id)
+        // Команда для видалення сервісу з бази даних
+        public async Task DeleteOfServiceAsync(OfService ofService)
         {
-            await ExecuteAsync(async () =>
+            if (ofService == null || string.IsNullOrEmpty(ofService.Id)) // Перевірка на наявність сервісу та його ID
             {
-                if (await _context.DeleteItemByKeyAsync<OfService>(id))
-                {
-                    var service = OfServices.FirstOrDefault(p => p.Id == id);
-                    OfServices.Remove(service);
-                }
-                else
-                {
-                    await Shell.Current.DisplayAlert("Delete Error", "Service was not deleted", "Ok");
-                }
-            }, "Deleting service...");
-        }
+                await Shell.Current.DisplayAlert("Помилка", "Не вдалося видалити сервіс", "ОК"); // Повідомлення про помилку
+                return;
+            }
 
-        // Допоміжний метод для обробки виконання команд із відображенням "busy state"
-        private async Task ExecuteAsync(Func<Task> operation, string? busyText = null)
-        {
-            IsBusy = true;
-            BusyText = busyText ?? "Processing...";
-            try
-            {
-                await operation?.Invoke();
-            }
-            catch (Exception ex)
-            {
-                // Логування або обробка помилки
-            }
-            finally
-            {
-                IsBusy = false;
-                BusyText = "Processing...";
-            }
+            await _servicesService.DeleteServiceAsync(ofService.Id); // Видалення сервісу з Firebase
+            ServiceList.Remove(ofService); // Видалення сервісу зі списку
         }
     }
 }

@@ -1,12 +1,363 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="course4Hotel.View.AddBooking"
-             Title="AddBooking">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:vm="clr-namespace:course4Hotel.ViewModels"
+             xmlns:models="clr-namespace:course4Hotel.Models"
+             xmlns:local="clr-namespace:course4Hotel.View"
+             NavigationPage.HasNavigationBar="False"
+             Style="{StaticResource GradientPageStyle}">
+    <StackLayout>
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto"
+              ColumnDefinitions="*">
+            <local:HeaderView 
+                Grid.Row="0"/>
+            <Button ZIndex="2"
+                    BackgroundColor="Transparent"
+                    WidthRequest="190"
+                    HeightRequest="50"
+                    Clicked="ShowAuthor_Button_Clicked"
+                    Margin="-20, 0, 0, 0"></Button>
+            <Button TextColor="White"
+                     BackgroundColor="Transparent"
+                     FontAttributes="Bold"
+                     CornerRadius="30"
+                     WidthRequest="55"
+                     HeightRequest="55"
+                     BorderColor="Transparent"
+                     VerticalOptions="Center"
+                     HorizontalOptions="End"
+                     Margin="0, 12, 10, 0"
+                     Grid.Row="0"
+                     Clicked="BlueButton_Clicked"/>
+            <Image  Grid.Row="0"
+                     ZIndex="2"
+                     WidthRequest="55"
+                     HeightRequest="55"
+                     VerticalOptions="Center"
+                     HorizontalOptions="End"
+                     Margin="0, 18.5, 10, 0"
+                     Source="https://cdn-icons-png.flaticon.com/128/3293/3293473.png"/>
+
+            <Frame x:Name="Account_frame"
+                   BackgroundColor="#f5f2e6"
+                   Padding="5"
+                   CornerRadius="10"
+                   VerticalOptions="End"
+                   HorizontalOptions="End"
+                   WidthRequest="170"
+                   HeightRequest="40"
+                   Margin="0, 0, 10, -5"
+                   IsVisible="False"
+                   Grid.Row="0"
+                   Frame.ZIndex="2">
+                <Grid RowDefinitions="Auto"
+                      ColumnDefinitions="Auto, Auto"
+                      RowSpacing="5"
+                      Padding="5"
+                      VerticalOptions="Center"
+                      HorizontalOptions="End"
+                      BackgroundColor="#f5f2e6"
+                      Grid.ZIndex="1">
+                    <Image Source="https://cdn-icons-png.flaticon.com/128/4034/4034229.png"
+                           HeightRequest="20"
+                           Margin="0, 0, 5, 0"
+                           Grid.Column="0"/>
+                    <Label x:Name="LogOutLabel"
+                           Grid.Column="1"
+                           FontSize="16"
+                           TextColor="#c4372d"
+                           FontAttributes="Bold"
+                           Text="Вийти з акаунту"
+                           HorizontalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLogOutLabelTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </Frame >
+            <Frame CornerRadius="0"
+                   Grid.Row="1"
+                    WidthRequest="400"
+                   HeightRequest="130"
+                   BorderColor="Transparent"
+                    Margin="0, 28, 0, 0">
+                <Frame.Background>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                        <GradientStop Color="#75705a3f" Offset="0.0" />
+                        <GradientStop Color="#85083631" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <Grid RowDefinitions="Auto, Auto, Auto"
+                      ColumnDefinitions="*, Auto, *"
+                      RowSpacing="0"
+                      Padding="0"
+                      Margin="0, 20, 0, 0"
+                      HeightRequest="130"
+                      WidthRequest="260"
+                      BackgroundColor="Transparent">
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           TextColor="White"
+                           Text="Дата заселення:"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"/>
+                    <DatePicker Grid.Row="1"
+                                Grid.Column="0"
+                                x:Name="CheckInDate"
+                                HorizontalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                BackgroundColor="#20000000"
+                                HeightRequest="40"
+                                Date="{Binding CheckInDate}"
+                                MinimumDate="{x:Static sys:DateTime.Today}"
+                                Format="dd.MM.yyyy"/>
+                    <Label Grid.Row="0"
+                           Grid.Column="2"
+                           Text="Дата виселення:"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"
+                           TextColor="White"/>
+                    <Label Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="15, 13, 0, 0"
+                           Text="-"
+                           WidthRequest="20"
+                           FontAttributes="Bold"
+                           
+                           HorizontalOptions="Center"/>
+                    <DatePicker Grid.Row="1"
+                                Grid.Column="2"
+                                x:Name="CheckOutDate"
+                                HorizontalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                BackgroundColor="#20000000"
+                                HeightRequest="40"
+                                Date="{Binding CheckOutDate}"
+                                MinimumDate="{x:Static sys:DateTime.Today}"
+                                Format="dd.MM.yyyy"/>
+                    <Button Text="Шукати"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            BackgroundColor="#30FFFFFF"
+                            TextColor="White"
+                            BorderWidth="0.5"
+                            BorderColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="30"
+                            WidthRequest="150"
+                            HeightRequest="40"
+                            Margin="0, 5, 0, 0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            Clicked="FindRoomsButton_Clicked"/>
+                </Grid>
+            </Frame>
+            <Grid Grid.Row="2"
+              RowDefinitions="*, Auto, Auto"
+              Margin="0, 5, 0, 0"
+              HeightRequest="500">
+                <ScrollView>
+                    <CollectionView
+                    ItemsSource="{Binding RoomList}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="10"
+                               Orientation="Vertical"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Room">
+                                <Frame  Padding="0"
+                                        CornerRadius="10"
+                                        Margin="5, 0, 5, 0"
+                                        BorderColor="Transparent">
+                                    <Frame.Background>
+                                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                            <GradientStop Color="#CCFFFFFF" Offset="0.0" />
+                                            <GradientStop Color="Transparent" Offset="1.0" />
+                                        </LinearGradientBrush>
+                                    </Frame.Background>
+                                    <Grid RowDefinitions="Auto, Auto, Auto"
+                                          ColumnDefinitions="*, Auto"
+                                          RowSpacing="5"
+                                          Padding="10"
+                                          BackgroundColor="Transparent">
+
+                                        <Label Grid.Row="0"
+                                               Grid.Column="0"
+                                               Text="{Binding Name, StringFormat='{0}'}"
+                                               FontSize="14"
+                                               FontAttributes="Bold"
+                                               VerticalOptions="End"
+                                               />
+
+                                        <Label Grid.Row="1"
+                                               Grid.Column="0"
+                                               Text="{Binding Price, StringFormat='Вартість проживання: {0} грн/день'}"
+                                               FontAttributes="Bold"
+                                               FontSize="12"
+                                               />
+                                        <Label Grid.Row="2"
+                                               Grid.ColumnSpan="2"
+                                               Grid.Column="0"
+                                               Text="{Binding Description, StringFormat='{0}'}"
+                                               FontSize="12"
+                                               FontAttributes="Bold"
+                                               />
+
+                                        <Button Grid.Row="0" 
+                                                Grid.Column="1" 
+                                                Text="бронювати"
+                                                Padding="0" 
+                                                HeightRequest="35" 
+                                                WidthRequest="100"
+                                                FontSize="14" 
+                                                 BackgroundColor="#40FFFFFF"
+                                                 TextColor="White"
+                                                 BorderWidth="0.5"
+                                                 BorderColor="White"
+                                                 FontAttributes="Bold"
+                                                CornerRadius="20"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:AddBooking}}, Path=SetRoomIdCommand}"
+                                                CommandParameter="{Binding Id}" 
+                                               />
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <VerticalStackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+                                <Label Text="Номерів не знайдено"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center"/>
+                                <Label Text="Спробуйте обрати інші дати"
+                                       FontSize="14"
+                                       HorizontalTextAlignment="Center"/>
+                            </VerticalStackLayout>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </ScrollView>
+            </Grid>
+
+            <VerticalStackLayout Grid.Row="2"
+                     IsVisible="True"
+                     x:Name="bookingBlock"
+                     Margin="7"
+                     ZIndex="1">
+                <Frame CornerRadius="15" 
+                       Padding="0"
+                       HeightRequest="300"
+                       Margin="0, 10, 0, 0"
+                       BorderColor="Transparent"
+                       HasShadow="False">
+                    <Frame.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#083631" Offset="0.0" />
+                            <GradientStop Color="#1a1c1c" Offset="1.0" />
+                        </LinearGradientBrush>
+                        </Frame.Background>
+                        <Grid>
+                            <Image x:Name="RoomImage" 
+                                    Aspect="AspectFill"
+                                    Opacity="0.45" 
+                                    WidthRequest="400"
+                                    HeightRequest="300"
+                                    IsVisible="True"/>
+                        <Grid   Margin="0, 35, 0, 0"
+                                RowDefinitions="Auto, Auto, Auto, Auto"
+                                ColumnDefinitions="*, *"
+                     
+                                HorizontalOptions="Center"
+                                VerticalOptions="End"
+                                WidthRequest="360"
+                                HeightRequest="200"
+                                RowSpacing="10"
+                                ColumnSpacing="5">
+
+                            <Label x:Name="NumberLabel"
+                                Margin="0, -50, 0, -27"
+                               Grid.Row="0"
+                               Grid.ColumnSpan="2"
+                               FontSize="14"
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+
+                            <Label x:Name="DatesLabel"
+                                   Grid.Row="1"
+                                   Margin="0, 0, 0, 45"
+                                   Grid.ColumnSpan="2"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+
+                            <Label x:Name="SummaryPriceLabel" 
+                                   FontAttributes="Bold"
+                                    FontSize="24" 
+                                   TextColor="White"
+                                   Grid.Row="2"
+                                   Grid.ColumnSpan="2"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+
+
+                            <Frame CornerRadius="20"
+                                   Grid.Row="3"
+                                   Grid.ColumnSpan="2"
+                                   Grid.Column="0"
+                                   BackgroundColor="#45ffffff"
+                                   HeightRequest="40"
+                                   BorderColor="White"
+                                   Margin="0, 0, 0, 0"
+                                   WidthRequest="245">  
+                                <Grid Padding="0"
+                                      HeightRequest="40"
+                                      ColumnDefinitions="*, Auto, *">
+                                    <Button Grid.Row="0"
+                                            Grid.Column="0"
+                                            WidthRequest="120"
+                                            BackgroundColor="Transparent"
+                                            Text="Підтвердити"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center"
+                                            Clicked="SaveBookingButton_Clicked"/>
+                                    <BoxView Grid.Column="1" 
+                                              WidthRequest="1"
+                                              BackgroundColor="White"
+                                              VerticalOptions="Center"
+                                              HeightRequest="25" />
+                                    <Button Grid.Row="0"
+                                            Grid.Column="2"
+                                            WidthRequest="120"
+                                            Text="Скасувати"
+                                            FontAttributes="Bold"
+                                            BackgroundColor="Transparent"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center"
+                                            Clicked="CancelBookingProcessButton_Clicked"/>
+                                </Grid>
+                                </Frame>
+                                
+                                
+                        </Grid>
+                    </Grid>
+                </Frame>
+            </VerticalStackLayout>
+        </Grid>
+    </StackLayout>
+    
 </ContentPage>

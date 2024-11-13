@@ -11,15 +11,13 @@ namespace course4Hotel.Models
     public class OfService
     {
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string Name { get; set; }  
 
         public float Price { get; set; }  
 
         public string Description { get; set; }  
-
-        public OfService Clone => MemberwiseClone() as OfService;  
 
         // Метод для валідації даних
         public (bool IsValid, string? ErrorMessage) Validate()
@@ -33,7 +31,7 @@ namespace course4Hotel.Models
                 return (false, $"{nameof(Price)} має бути більше 0.");
             }
 
-            return (true, null);  // Успішна валідація
+            return (true, null);
         }
     }
 }

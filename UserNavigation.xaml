@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="course4Hotel.UserNavigation"
+             xmlns:view="clr-namespace:course4Hotel.View"
+        Shell.NavBarIsVisible="False">
+
+    <TabBar>
+    
+        <ShellContent
+        Icon="https://cdn-icons-png.flaticon.com/128/59/59801.png"
+        Title="мої бронювання"
+        ContentTemplate="{DataTemplate view:BookingReview}"
+        
+        />
+        <ShellContent
+         Icon="https://cdn-icons-png.flaticon.com/128/17138/17138146.png"
+        Title="забронювати"
+         ContentTemplate="{DataTemplate view:AddBooking}"
+
+         />
+        <ShellContent
+        Icon="https://cdn-icons-png.flaticon.com/128/10351/10351968.png"
+        Title="послуги"
+        ContentTemplate="{DataTemplate view:Services}"
+       
+/>
+       
+    </TabBar>
+</Shell>

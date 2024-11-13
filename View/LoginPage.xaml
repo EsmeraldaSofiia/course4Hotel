@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="course4Hotel.View.LoginPage"
+             Title="Вхід в акаунт"
+              NavigationPage.HasNavigationBar="False"
+             Style="{StaticResource GradientPageStyle}"
+             >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="220"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <StackLayout>
+            <Frame HeightRequest="65" 
+                   WidthRequest="65" 
+                   CornerRadius="30" 
+                   Padding="0" 
+                   BackgroundColor="Transparent"
+                   Margin="0, 100, 0, 0"
+                   BorderColor="Transparent"
+                   HorizontalOptions="Center">
+                <Image Source="https://cdn-icons-png.flaticon.com/128/11016/11016909.png" Aspect="AspectFill" Margin="0"/>
+            </Frame>
+        </StackLayout>
+
+        <Grid RowSpacing="5" Grid.Row="1" Margin="20, 20, 20, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="1" 
+                   Text="Реєстрація" 
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="28"
+                   />   
+
+            <Label Grid.Row="2" 
+                   Text="Заповніть всі поля" 
+                   HorizontalOptions="Center"
+                   FontSize="18"
+                   />
+            
+            <StackLayout Grid.Row="3"
+                         Orientation="Vertical"
+                         WidthRequest="300"
+                         HorizontalOptions="CenterAndExpand">
+                <Frame BackgroundColor="#45141414"
+                       BorderColor="White"
+                       Padding="0"
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="30">
+                    <StackLayout Orientation="Horizontal" >
+                        <Frame BackgroundColor="Transparent" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                            <Image Source="https://cdn-icons-png.flaticon.com/128/9833/9833237.png" Aspect="AspectFill" Margin="0" />
+                        </Frame>
+                        <Entry x:Name="FullNameEntry" 
+                           Placeholder="Введіть ваше повне ім'я"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="FillAndExpand"
+                           Margin="0, 0, 20, 0"/>
+                    </StackLayout>
+
+                </Frame>
+                <Frame BackgroundColor="#45141414"
+                    BorderColor="White"
+                    Margin="0, 15, 0, 0"
+                    Padding="0"
+                    HorizontalOptions="FillAndExpand"
+                    CornerRadius="30">
+                            <StackLayout Orientation="Horizontal" >
+                                <Frame BackgroundColor="Transparent" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                            <Image Source="https://cdn-icons-png.flaticon.com/128/684/684857.png" Aspect="AspectFill" Margin="0" />
+                                </Frame>
+                        <Entry x:Name="EmailEntry" 
+                        Placeholder="Введіть свою електронну адресу"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="FillAndExpand"
+                        Margin="0, 0, 20, 0"/>
+                            </StackLayout>  
+                </Frame>
+                <Frame BackgroundColor="#45141414"
+                       BorderColor="White"
+                       Margin="0, 15, 0, 0"
+                       Padding="0"
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="30">
+                                <StackLayout Orientation="Horizontal" >
+                                    <Frame BackgroundColor="Transparent" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                            <Image Source="https://cdn-icons-png.flaticon.com/128/455/455705.png" Aspect="AspectFill" Margin="0" />
+                                    </Frame>
+                        <Entry x:Name="PhoneNumberEntry" 
+                               Placeholder="Введіть свій номер телефону"
+                               VerticalOptions="Center" 
+                               HorizontalOptions="FillAndExpand"
+                               Keyboard="Numeric"
+                               Margin="0, 0, 20, 0"/>
+                    </StackLayout>  
+                </Frame>
+                <Frame BackgroundColor="#45141414"
+                       BorderColor="White"
+                       Margin="0, 15, 0, 0"
+                       Padding="0"
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="30">
+                                    <StackLayout Orientation="Horizontal" >
+                                        <Frame BackgroundColor="Transparent" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                            <Image Source="https://cdn-icons-png.flaticon.com/128/1/1213.png" Aspect="AspectFill" Margin="0" />
+                                        </Frame>
+                                        <Entry x:Name="PasswordEntry" 
+                           Placeholder="Придумайте пароль"
+                           VerticalOptions="Center" 
+                           IsPassword="True"
+                           HorizontalOptions="FillAndExpand"
+                           Margin="0, 0, 20, 0"/>
+                                    </StackLayout>
+                </Frame>
+                <Button Text="Зареєструватися"
+                        CornerRadius="30"
+                        WidthRequest="200"
+                        Margin="0, 15, 0, 0"
+                        Background="White"
+                        FontAttributes="Bold"
+                        TextColor="#303030"
+                        Clicked="Button_Clicked"/>
+
+                <StackLayout Margin="0, 15, 0, 0" HorizontalOptions="CenterAndExpand" Padding="0">
+                    <Label Text="Вже зареєстровані?"
+                           FontSize="16"
+                           TextColor="Black"
+                           Margin="0, 15, 0, 0"/>
+                    <Label Text="Увійти"
+                           FontSize="16"
+                           TextColor="#0047ab"
+                           FontAttributes="Bold">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnRegisterLabelTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

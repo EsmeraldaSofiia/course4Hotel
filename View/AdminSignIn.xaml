@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="course4Hotel.View.AdminSignIn"
+              NavigationPage.HasNavigationBar="False"
+              Style="{StaticResource GradientPageStyle}">
+    <Grid RowSpacing="5" Grid.Row="1" Margin="20, 20, 20, 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="270"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" 
+               Text="Вхід для працівника" 
+               HorizontalOptions="Center"
+               VerticalOptions="End"
+               FontSize="24"
+               FontAttributes="Bold"
+               Padding="0"
+               Margin="0"/>
+
+        <Frame BackgroundColor="#45141414"
+               Grid.Row="1"
+                BorderColor="White"
+                Margin="0, 25, 0, 0"
+                Padding="0"
+                WidthRequest="280"
+                HorizontalOptions="FillAndExpand"
+                CornerRadius="30">
+            <StackLayout Orientation="Horizontal" >
+            <Frame BackgroundColor="Transparent" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                    <Image Source="https://cdn-icons-png.flaticon.com/128/9068/9068759.png" Aspect="AspectFill" Margin="0" />
+            </Frame>
+                <Entry x:Name="AdminCodeEntry" 
+                       IsPassword="True"
+                       Placeholder="Введіть спеціальний код"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="FillAndExpand"
+                       Margin="0, 0, 20, 0"/>
+            </StackLayout>
+            
+    </Frame>
+
+        <StackLayout Grid.Row="2"
+              Orientation="Vertical"
+              WidthRequest="300"
+              HorizontalOptions="CenterAndExpand">
+            <Button Text="Увійти"
+                    CornerRadius="30"
+                    WidthRequest="190"
+                    Margin="0, 15, 0, 0"
+                    Background="White"
+                    FontAttributes="Bold"
+                    TextColor="#303030"
+                    Clicked="Button_Clicked"
+                    />
+        </StackLayout>
+    </Grid>
+</ContentPage>

@@ -1,12 +1,13 @@
 using course4Hotel.ViewModels;
 using course4Hotel.Models;
-using course4Hotel.Data;
+using Firebase.Database;
 namespace course4Hotel.View;
 
 
 public partial class AdminServices : ContentPage
 {
     private readonly OfServicesViewModel _viewModel;
+    private readonly FirebaseClient _firebaseClient;
 
     // Прапорець для відстеження стану видимості форми
     private bool isServiceFormVisible = false;
@@ -15,7 +16,7 @@ public partial class AdminServices : ContentPage
     {
         InitializeComponent();
 
-        // Прив'язка контексту сторінкfи до ViewModel
+        // Прив'язка контексту сторінки до ViewModel
         BindingContext = viewModel;
         _viewModel = viewModel;
 
@@ -47,5 +48,81 @@ public partial class AdminServices : ContentPage
     {
         serviceBlock.IsVisible = isServiceFormVisible;
         ServiceFormButton.Text = isServiceFormVisible ? "Згорнути" : "Додати сервіс";
+    }
+
+    // Подія для додавання сервісу
+    private async void AddServiceButton_Clicked(object sender, EventArgs e)
+    {
+        // Якщо поточний сервіс не існує, створити новий
+        if (_viewModel.OperatingOfService == null)
+        {
+            _viewModel.OperatingOfService = new OfService();
+        }
+
+        // Заповнення властивостей сервісу
+        if (!string.IsNullOrEmpty(ServiceNameEntry.Text) &&
+            !string.IsNullOrEmpty(ServicePriceEntry.Text) &&
+            !string.IsNullOrEmpty(ServiceDescriptionEntry.Text))
+        {
+            _viewModel.OperatingOfService.Name = ServiceNameEntry.Text;
+            _viewModel.OperatingOfService.Price = float.Parse(ServicePriceEntry.Text);
+            _viewModel.OperatingOfService.Description = ServiceDescriptionEntry.Text;
+
+            // Збереження сервісу
+            await _viewModel.SaveOfServiceAsync(_viewModel.OperatingOfService);
+            UpdateServiceFormVisibility();
+
+            // Очищення полів вводу
+            ServiceNameEntry.Text = string.Empty;
+            ServicePriceEntry.Text = string.Empty;
+            ServiceDescriptionEntry.Text = string.Empty;
+
+            // Приховування форми
+            isServiceFormVisible = false;
+            UpdateServiceFormVisibility();
+        }
+        else
+        {
+            await DisplayAlert("Помилка", "Будь ласка, заповніть всі поля", "ОК");
+        }
+    }
+
+    //Подія для редагування сервісу
+    private async void UpdateButton_Clicked(object sender, EventArgs e)
+    {
+        if (_viewModel.OperatingOfService != null)
+        {
+            ServiceNameEntry.Text = _viewModel.OperatingOfService.Name;
+            ServicePriceEntry.Text = _viewModel.OperatingOfService.Price.ToString();
+            ServiceDescriptionEntry.Text = _viewModel.OperatingOfService.Description;
+
+            // Sпоказати форму, якщо вона прихована
+            if (!isServiceFormVisible)
+            {
+                isServiceFormVisible = true;
+                UpdateServiceFormVisibility();
+            }
+        }
+        else
+        {
+            await DisplayAlert("Помилка", "Будь ласка, виберіть сервіс для оновлення", "ОК");
+        }
+    }
+    // Подія для натиснення кнопки опцій акаунту
+    public void BlueButton_Clicked(object sender, EventArgs e)
+    {
+        Account_frame.IsVisible = !Account_frame.IsVisible;
+    }
+    //Подія для виходу з акаунту
+    public async void OnLogOutLabelTapped(object sender, TappedEventArgs e)
+    {
+        Account_frame.IsVisible = false;
+        UserSession.UserId = null;
+        Application.Current.MainPage = new NavigationPage(new View.SinginPage(_firebaseClient));
+        Shell.SetTabBarIsVisible(this, false);
+    }
+    public async void ShowAuthor_Button_Clicked(object sender, EventArgs e)
+    {
+        await DisplayAlert("Про автора", "цей застосунок був створений у ході виконання курсового проєкту \n\nстуденткою 45 групи спеціальності 121\nВСП 'ППФК НТУ 'ХПІ''\n\nЖаботинською Софією", "Чудово!");
     }
 }

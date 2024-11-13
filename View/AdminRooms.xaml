@@ -5,83 +5,212 @@
              xmlns:vm="clr-namespace:course4Hotel.ViewModels"
              xmlns:models="clr-namespace:course4Hotel.Models"
              x:DataType="vm:RoomsViewModel"
-             Title="Перегляд номерів">
-    <Grid RowDefinitions="Auto, *">
-        <Label Grid.Row="0" 
-               Text="Номери"
-               FontAttributes="Bold" 
-               FontSize="18" 
-               Padding="10"/>
-        
-        <Grid Grid.Row="1"
-              RowDefinitions="*, Auto, Auto">
-            <CollectionView Grid.Row="0"
-                            ItemsSource="{Binding Rooms}">
+             xmlns:local="clr-namespace:course4Hotel.View"
+             NavigationPage.HasNavigationBar="False"
+             Style="{StaticResource GradientPageStyle}">
+    
+    <Grid RowDefinitions="80, Auto, *">
+        <local:HeaderView  Grid.Row="0"/>
+        <Button ZIndex="2"
+        BackgroundColor="Transparent"
+        WidthRequest="190"
+        HeightRequest="50"
+        Clicked="ShowAuthor_Button_Clicked"
+        Margin="-20, 0, 0, 0"></Button>
+        <Button TextColor="White"
+                BackgroundColor="Transparent"
+                FontAttributes="Bold"
+                CornerRadius="30"
+                WidthRequest="55"
+                HeightRequest="55"
+                BorderColor="Transparent"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                Margin="0, 12, 10, 0"
+                Grid.Row="0"
+                Clicked="BlueButton_Clicked"/>
+        <Image  Grid.Row="0"
+                ZIndex="2"
+                WidthRequest="55"
+                HeightRequest="55"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                Margin="0, 12, 10, 0"
+                Source="https://cdn-icons-png.flaticon.com/128/3293/3293473.png"/>
+
+        <Frame x:Name="Account_frame"
+               BackgroundColor="#f5f2e6"
+               Padding="5"
+               CornerRadius="10"
+               VerticalOptions="End"
+               HorizontalOptions="End"
+               WidthRequest="170"
+               HeightRequest="40"
+               Margin="0, 0, 10, -5"
+               IsVisible="False"
+               Grid.Row="0"
+               Frame.ZIndex="2">
+            <Grid RowDefinitions="Auto"
+                  ColumnDefinitions="Auto, Auto"
+                  RowSpacing="5"
+                  Padding="5"
+                  VerticalOptions="Center"
+                  HorizontalOptions="End"
+                  BackgroundColor="#f5f2e6"
+                  Grid.ZIndex="1">
+                <Image Source="https://cdn-icons-png.flaticon.com/128/4034/4034229.png"
+                       HeightRequest="20"
+                       Margin="0, 0, 5, 0"
+                       Grid.Column="0"/>
+                <Label x:Name="LogOutLabel"
+                       Grid.Column="1"
+                       FontSize="16"
+                       TextColor="#c4372d"
+                       FontAttributes="Bold"
+                       Text="Вийти з акаунту"
+                       HorizontalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLogOutLabelTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Frame>
+
+        <Label Text="Редагування номерів"
+               FontAttributes="Bold"
+               FontSize="20"
+               Margin="15, 18, -25, 0"
+               Grid.Row="1"/>
+        <Grid Grid.Row="2"
+              RowDefinitions="*, Auto, Auto"
+               Margin="0, 5, 0, 0"
+              >
+            <ScrollView>
+            <CollectionView Grid.Row="1"
+                            ItemsSource="{Binding RoomList}"
+                            >
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="10"
                                        Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Room">
-                        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
-                              ColumnDefinitions="*, Auto"
-                              RowSpacing="5"
-                              Padding="5"
-                              BackgroundColor="#ECECEC">
-                            <Label Grid.Row="0"
-                                   Grid.Column="0"
-                                   Text="{Binding Number, StringFormat='{0} номер'}"
-                                   FontAttributes="Bold"/>
-                            
-                            <Label Grid.Row="1"
-                                   Grid.Column="0"
-                                   Text="{Binding floor, StringFormat='{0} поверх'}"
-                                   FontSize="12"
-                                   />
-                            
-                            <Label Grid.Row="2"
-                                   Grid.Column="0"
-                                   Text="{Binding Name, StringFormat='Тип апартаментів: {0}'}"
-                                   FontSize="12"
-                                   />
-                            
-                            <Label Grid.Row="3"
-                                   Grid.Column="0"
-                                   Text="{Binding Price, StringFormat='Вартість проживання: {0} грн/день'}"
-                                   FontSize="12"
-                                   />
-                            <Label Grid.Row="4"
-                                   Grid.Column="0"
-                                   Text="{Binding Description, StringFormat='Деталі: {0}'}"
-                                   FontSize="12"
-                                   />
-                            
-                            <Button Grid.Row="0"
-                                    Grid.Column="1"
-                                    Text="Редагувати"
-                                    Padding="0"
-                                    HeightRequest="25"
-                                    FontSize="12"
-                                    CornerRadius="1"
-                                    Clicked="UnfoldFormClicked"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:RoomsViewModel}}, Path=SetOperatingRoomCommand}"
-                                    CommandParameter="{Binding .}"
-                                    />
-                            
-                            <Button Grid.Row="1"
-                                    Grid.Column="1"
-                                    Text="Видалити"
-                                    WidthRequest="100"
-                                    Padding="0"
-                                    HeightRequest="25"
-                                    FontSize="12"
-                                    CornerRadius="1"
-                        
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:RoomsViewModel}}, Path=DeleteRoomCommand}"
-                                    CommandParameter="{Binding Id}"
-                                    />
-                        </Grid>
-                    </DataTemplate>
+                            <Frame CornerRadius="15" 
+                                   Padding="0"
+                                   Margin="10, 0, 10, 0"
+                                   BorderColor="Transparent"
+                                   HasShadow="False">
+                                <Frame.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#CC083631" Offset="0.0" />
+                                        <GradientStop Color="#DD1a1c1c" Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </Frame.Background>
+                                <Grid>
+                                    <Image Source="{Binding ImageSource}"
+                                           Aspect="AspectFill"
+                                           Opacity="0.35" 
+                                           WidthRequest="400"
+                                           HeightRequest="170"
+                                           IsVisible="True"/>
+                                    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                                      ColumnDefinitions="*, Auto"
+                                      RowSpacing="5"
+                                      Padding="0"
+                                      BackgroundColor="Transparent">
+                                        <Label Grid.Row="0"
+                                               Grid.Column="0"
+                                               TextColor="White"
+                                               Text="{Binding Number, StringFormat='{0} номер'}"
+                                               FontAttributes="Bold"
+                                               Margin="10, 15, 0, 0"
+                                               FontSize="16"/>
+
+                                        <Label Grid.Row="1"
+                                           Grid.ColumnSpan="2"
+                                           Grid.Column="0"
+                                           Margin="10, 10, 0, 0"
+                                          
+                                           TextColor="White"
+                                           Text="{Binding floor, StringFormat='{0} поверх'}"
+                                           FontSize="14"
+                                           />
+
+                                        <Label Grid.Row="2"
+                                            Grid.ColumnSpan="2"
+                                           Grid.Column="0"
+                                           Margin="10, 0, 0, 0"
+                                           
+                                           TextColor="White"
+                                           Text="{Binding Name, StringFormat='Тип: {0}'}"
+                                           FontSize="13"
+                                           />
+
+                                        <Label Grid.Row="3"
+                                               Grid.ColumnSpan="2"
+                                               Grid.Column="0"
+                                               Margin="10, 0, 0, 0"
+                                              
+                                               TextColor="White"
+                                               Text="{Binding Price, StringFormat='Вартість проживання: {0} грн/день'}"
+                                               FontSize="13"
+                                               />
+                                        <Label Grid.Row="4"
+                                           Grid.ColumnSpan="2"
+                                           Grid.Column="0"
+                                           Margin="10, 0, 10, 0"
+                                           
+                                           TextColor="White"
+                                           Text="{Binding Description}"
+                                           FontSize="12"
+                                           />
+                                        <Frame CornerRadius="20"
+                                               Grid.Row="0"
+                                               Grid.Column="1"
+                                               BackgroundColor="#45ffffff"
+                                               HeightRequest="30"
+                                               BorderColor="White"
+                                               Margin="0, 10, 10, 0"
+                                               WidthRequest="190">
+                                            <Grid Padding="0"
+                                              HeightRequest="30"
+                                              ColumnDefinitions="*, Auto, *">
+                                                <Button Grid.Row="0" 
+                                                        Grid.Column="0" 
+                                                        Text="Редагувати   "
+                                                        Padding="0" 
+                                                        FontAttributes="Bold"
+                                                        HeightRequest="20" 
+                                                        FontSize="12" 
+                                                        CornerRadius="0"
+                                                        BackgroundColor="Transparent"
+                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:RoomsViewModel}}, Path=SetOperatingRoomCommand}"
+                                                        CommandParameter="{Binding .}" 
+                                                        Clicked="UpdateButton_Clicked"/>
+                                                <BoxView Grid.Column="1" 
+                                                         WidthRequest="1"
+                                                         BackgroundColor="White"
+                                                         VerticalOptions="Center"
+                                                         HeightRequest="20" />
+
+                                                <Button Grid.Row="1" 
+                                                        Grid.Column="2" 
+                                                        Text="Видалити"
+                                                        WidthRequest="100" 
+                                                        Padding="0" 
+                                                        HeightRequest="20" 
+                                                        FontSize="12" 
+                                                        FontAttributes="Bold"
+                                                        CornerRadius="0"
+                                                        BackgroundColor="Transparent"
+                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:RoomsViewModel}}, Path=DeleteRoomCommand}"
+                                                        CommandParameter="{Binding .}" />
+                                            </Grid>
+                                        </Frame>
+                                    </Grid>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
                 </CollectionView.ItemTemplate>
                 <CollectionView.EmptyView>
                     <VerticalStackLayout HorizontalOptions="Center"
@@ -96,78 +225,118 @@
                     </VerticalStackLayout>
                 </CollectionView.EmptyView>
             </CollectionView>
+                </ScrollView>
             <Button x:Name="RoomFormButton"
-                    
+                    Grid.Row="1"
                     VerticalOptions="End"
-                    WidthRequest="200"
+                    FontAttributes="Bold"
+                    WidthRequest="450"
+                    Background="#6e6e6e"
                     Clicked="UnfoldFormClicked" />
-            <VerticalStackLayout Grid.Row="1"
+            <VerticalStackLayout Grid.Row="2"
                                  x:Name="roomBlock">
-                <BoxView Color="{DynamicResource Primary}"
+                <BoxView Color="#52919c"
                          HeightRequest="1"/>
                 <Grid 
                       RowDefinitions="*, Auto, Auto, Auto, Auto, Auto"
-                      ColumnDefinitions="Auto, Auto"
-                      BackgroundColor="#CCBFFA"
+                      ColumnDefinitions="Auto, Auto, Auto"
                       Padding="10"
                       RowSpacing="10"
-                        >
-                    <VerticalStackLayout Grid.Row="0"
-                                         Grid.Column="0">
-                        <Label Text="Поверх:" FontAttributes="Bold"/>
-                        <Entry Text="{Binding OperatingRoom.floor}"
-                               Placeholder="Введіть поверх"
-                               Margin="0"
+                      ColumnSpacing="10"
+                    Background="#606e6e6e" >
+                    
+                    <HorizontalStackLayout Grid.Row="0"
+                                         Grid.Column="0"
+                                           Spacing="10">
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Grid.Row="1"
+                                         Grid.Column="0"
+                                         Spacing="10">
+                        <Label Text="Поверх:" 
+                                FontAttributes="Bold"
+                                VerticalOptions="Center"/>
+                        <Entry x:Name="floorEntry"
+                                 Placeholder="0"
+                                 Margin="0"
+                                 HorizontalOptions="Start"
+                                 WidthRequest="70"
+                                 HeightRequest="35"
+                                 Keyboard="Numeric"
+                                 BackgroundColor="#20FFFFFF"
+                                 PlaceholderColor="#1d3a3d"/>
+                        <Label Text="Номер апартаментів:" 
+                               FontAttributes="Bold"
+                                VerticalOptions="Center"/>
+                        <Entry x:Name="RoomNumberEntry"
+                               Placeholder="000"
                                Keyboard="Numeric"
-                               BackgroundColor="#DAD1F9"/>
-                    </VerticalStackLayout>
-                    <VerticalStackLayout Grid.Row="0"
-                                         Grid.Column="1">
-                        <Label Text="Номер апартаментів:" FontAttributes="Bold"/>
-                        <Entry Text="{Binding OperatingRoom.Number}"
-                               Placeholder="Введіть номер кімнат"
-                               Keyboard="Numeric"
-                               BackgroundColor="#DAD1F9"
-                               Margin="0"/>
-                    </VerticalStackLayout>
+                               HeightRequest="35"
+                               BackgroundColor="#20FFFFFF"
+                               PlaceholderColor="#1d3a3d"
+                               HorizontalOptions="Start"
+                               WidthRequest="70"/>
+                       
+                    </HorizontalStackLayout>
 
-                    <StackLayout RadioButtonGroup.GroupName="roomValues"
-                                 Grid.Row="2"
-                                
-                                 RadioButtonGroup.SelectedValue="{Binding OperatingRoom.Name}">
-                        <Label Text="Виберіть тип номеру:" FontAttributes="Bold"/>
-                        <RadioButton Content="Стандарт" Value="Стандарт"/>
-                        <RadioButton Content="Студія" Value="Студія"/>
-                        <RadioButton Content="Делюкс" Value="Делюкс"/>
-                        <RadioButton Content="Президентський" Value="Президентський"/>
+                    <StackLayout 
+                                 Grid.Row="2">
+                        <Label Text="Тип номеру:" FontAttributes="Bold"/>
+                        <Picker Title="виберіть зі списку"
+                                BackgroundColor="#20FFFFFF"
+                                HorizontalOptions="Start"
+                                HeightRequest="35"
+                                WidthRequest="225"
+                                SelectedItem="{Binding SelectedName}">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Стандарт</x:String>
+                                    <x:String>Студія</x:String>
+                                    <x:String>Делюкс</x:String>
+                                    <x:String>Президентський</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
                     </StackLayout>
                     <VerticalStackLayout Grid.Row="3"
-                     Grid.Column="0">
-                        <Label Text="Вартість проживання:" FontAttributes="Bold"/>
-                        <Entry Text="{Binding OperatingRoom.Price}"
-                               Placeholder="Введіть вартість проживання"
+                                         Grid.ColumnSpan="2"
+                                         Grid.Column="0">
+                        <Label Text="Вартість проживання (грн/доба):" FontAttributes="Bold"/>
+                        <Entry x:Name="PriceEntry"
+                               Placeholder="0 грн/доба"
                                Keyboard="Numeric"
-                               Margin="0"
-                               BackgroundColor="#DAD1F9"/>
+                               HeightRequest="35"
+                               BackgroundColor="#20FFFFFF"
+                               HorizontalOptions="Start"
+                               PlaceholderColor="#1d3a3d"
+                               WidthRequest="225"/>
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Row="4"
+                                         Grid.ColumnSpan="3"
                                          Grid.Column="0">
                         <Label Text="Опис:" FontAttributes="Bold"/>
-                        <Entry Text="{Binding OperatingRoom.Description}"
-                               Placeholder="Введіть опис номеру"
+                        <Editor x:Name="DescriptionEntry"
+                               WidthRequest="370"
+                               HeightRequest="100"
+                               Placeholder="кількість ліжок, техніка, інші особливості"
                                Margin="0"
-                               BackgroundColor="#DAD1F9"/>
+                               VerticalOptions="Center"
+                               BackgroundColor="#20FFFFFF"
+                               PlaceholderColor="#1d3a3d"
+                               HorizontalOptions="Start"/>
                     </VerticalStackLayout>
                     <Button Grid.Row="5"
                             Grid.ColumnSpan="2"
-                            WidthRequest="200"
+                            FontAttributes="Bold"
+                            WidthRequest="170"
                             Text="Зберегти"
                             HorizontalOptions="Center"
                             VerticalOptions="End"
                             Padding="50, 0"
-                            Clicked="UnfoldFormClicked"
-                            Command="{Binding SaveRoomCommand}">
-                        
+                            CornerRadius="30"
+                            Clicked="AddRoomButton_Clicked"
+                            BackgroundColor="#305869"
+                        >
+
                     </Button>
                 </Grid>
             </VerticalStackLayout>

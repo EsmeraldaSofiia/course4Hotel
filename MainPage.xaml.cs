@@ -1,12 +1,16 @@
-﻿namespace course4Hotel
+﻿using Firebase.Database;
+
+namespace course4Hotel
 {
     public partial class MainPage : ContentPage
     {
+        private readonly FirebaseClient _firebaseClient;
         int count = 0;
 
-        public MainPage()
+        public MainPage(FirebaseClient firebaseClient)
         {
             InitializeComponent();
+            _firebaseClient = firebaseClient;
         }
 
         private void OnCounterClicked(object sender, EventArgs e)

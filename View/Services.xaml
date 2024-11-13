@@ -1,12 +1,171 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:course4Hotel.ViewModels"
+             xmlns:models="clr-namespace:course4Hotel.Models"
+             xmlns:local="clr-namespace:course4Hotel.View"
              x:Class="course4Hotel.View.Services"
-             Title="Services">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             NavigationPage.HasNavigationBar="False"
+             Style="{StaticResource GradientPageStyle}">
+    <StackLayout>
+        <Grid RowDefinitions="Auto, Auto, 580"
+              ColumnDefinitions="*">
+            <local:HeaderView 
+         Grid.Row="0" />
+            <Button ZIndex="2"
+                    BackgroundColor="Transparent"
+                    WidthRequest="190"
+                    HeightRequest="50"
+                    Clicked="ShowAuthor_Button_Clicked"
+                    Margin="-20, 0, 0, 0"></Button>
+            <Button TextColor="White"
+                     BackgroundColor="Transparent"
+                     FontAttributes="Bold"
+                     CornerRadius="30"
+                     WidthRequest="55"
+                     HeightRequest="55"
+                     BorderColor="Transparent"
+                     VerticalOptions="Center"
+                     HorizontalOptions="End"
+                     Margin="0, 12, 10, 0"
+                     Grid.Row="0"
+                     Clicked="BlueButton_Clicked"/>
+            <Image  Grid.Row="0"
+                     ZIndex="2"
+                     WidthRequest="55"
+                     HeightRequest="55"
+                     VerticalOptions="Center"
+                     HorizontalOptions="End"
+                     Margin="0, 18, 10, 0"
+                     Source="https://cdn-icons-png.flaticon.com/128/3293/3293473.png"/>
+
+            <Frame x:Name="Account_frame"
+                    BackgroundColor="#f5f2e6"
+                    Padding="5"
+                    CornerRadius="10"
+                    VerticalOptions="End"
+                    HorizontalOptions="End"
+                    WidthRequest="170"
+                    HeightRequest="40"
+                    Margin="0, 0, 10, -5"
+                    IsVisible="False"
+                    Grid.Row="0"
+                    Frame.ZIndex="2">
+                <Grid RowDefinitions="Auto"
+                      ColumnDefinitions="Auto, Auto"
+                      RowSpacing="5"
+                      Padding="5"
+                      VerticalOptions="Center"
+                      HorizontalOptions="End"
+                      BackgroundColor="#f5f2e6"
+                      Grid.ZIndex="1">
+                    <Image Source="https://cdn-icons-png.flaticon.com/128/4034/4034229.png"
+                            HeightRequest="20"
+                            Margin="0, 0, 5, 0"
+                            Grid.Column="0"/>
+                    <Label x:Name="LogOutLabel"
+                            Grid.Column="1"
+                            FontSize="16"
+                            TextColor="#c4372d"
+                            FontAttributes="Bold"
+                            Text="Вийти з акаунту"
+                            HorizontalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLogOutLabelTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </Frame>
+
+            <Label Text="Перегляд доступних послуг"
+                   FontAttributes="Bold"
+                   FontSize="18"
+                   Margin="10, 35, -5, 0"
+                   Grid.Row="1"/>
+
+            <Grid Grid.Row="2"
+                  RowDefinitions="*, Auto, Auto"
+                  Margin="10, 10, 10, 0"
+                  
+                    >
+                <ScrollView>
+                    <CollectionView ItemsSource="{Binding ServiceList}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         Span="2"
+                                         VerticalItemSpacing="5"
+                                         HorizontalItemSpacing="5"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:OfService">
+                            <Frame CornerRadius="15"
+                                   BorderColor="Transparent"
+                                   Padding="8">
+                                <Frame.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#75705a3f" Offset="0.0" />
+                                        <GradientStop Color="#75635442" Offset="0.4" />
+                                        <GradientStop Color="#75858585" Offset="0.768" />
+                                        <GradientStop Color="#35FFFFFF" Offset="0.769" />
+                                        <GradientStop Color="#35FFFFFF" Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </Frame.Background>
+                                <Grid RowDefinitions="Auto, Auto, *, Auto, Auto"
+                                  ColumnDefinitions="*"
+                                  RowSpacing="5"
+                                  Padding="5"
+                                  BackgroundColor="Transparent">
+                                    <Label 
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                        HorizontalOptions="Center"
+                                       Text="{Binding Name}"
+                                       FontAttributes="Bold"
+                                         Margin="0, 8, 0, -5"
+                                       FontSize="15"/>
+                                    
+                                    <Label Grid.Row="1"
+                                       Grid.Column="0"
+                                       Text="{Binding Price, StringFormat='{0} грн'}"
+                                       HorizontalOptions="Center"
+                                       FontSize="13"/>
+
+                                    <Label Grid.Row="2"
+                                       Grid.Column="0"
+                                       Text="{Binding Description}"
+                                       WidthRequest="168"
+                                       FontSize="12"
+                                       HeightRequest="65"
+                                       />
+                                    <Button Text="Замовити"
+                                        Grid.Row="3"
+                                         Padding="0"
+                                         HeightRequest="25"
+                                         VerticalOptions="End"
+                                         FontSize="14"
+                                         Margin="0, 0, 0, -10"
+                                         CornerRadius="1"
+                                         FontAttributes="Bold"
+                                         BackgroundColor="Transparent"
+                                        Clicked="OrderButton_Clicked">
+                                    </Button>
+
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <VerticalStackLayout HorizontalOptions="Center"
+                                             VerticalOptions="Center">
+                            <Label Text="Послуг не знайдено"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"/>
+                        </VerticalStackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+                </ScrollView>
+            </Grid>
+        </Grid>
+    </StackLayout>
 </ContentPage>

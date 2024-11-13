@@ -4,23 +4,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:view="clr-namespace:course4Hotel.View"
-    Title="course4Hotel">
+    Shell.NavBarIsVisible="False"
+    >
 
     <TabBar>
         <ShellContent
-            Title="Повідомлення"
-            ContentTemplate="{DataTemplate view:NotificationsAdmin}"
-            
-            />
+            Icon="https://cdn-icons-png.flaticon.com/128/59/59801.png"
+            Title="номери"
+            ContentTemplate="{DataTemplate view:AdminRooms}"/>
         <ShellContent
-            Title="Номери"
-            ContentTemplate="{DataTemplate view:AdminRooms}"
-            
-            />
-        <ShellContent
-            Title="Сервіси"
+            Icon="https://cdn-icons-png.flaticon.com/128/10351/10351968.png"
+            Title="сервіси"
             ContentTemplate="{DataTemplate view:AdminServices}"
-           
     />
     </TabBar>
 

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="course4Hotel.View.HeaderView"
+                       NavigationPage.HasNavigationBar="False">
+    <StackLayout>
+        <!-- Сіра панель з логотипом, назвою та кнопкою -->
+        <Grid Padding="10"
+              HeightRequest="90">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#ffc745" Offset="0.0" />
+                    <GradientStop Color="#ffad14" Offset="1.0" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Логотип -->
+            <Image Source="https://cdn-icons-png.flaticon.com/128/11016/11016909.png" 
+               WidthRequest="45" 
+               HeightRequest="45" 
+               HorizontalOptions="End"
+               VerticalOptions="Center"
+               Rotation="35"
+               Margin="70, 0, 0, 0"
+               Grid.Column="0" />
+
+            <!-- Назва готелю -->
+            <Grid Grid.Column="1" 
+                  Margin="0, 15, 0, 0"
+                  RowDefinitions="Auto, Auto"
+                  ColumnDefinitions="*, Auto, Auto, *">
+                <Label Grid.ColumnSpan="4"
+                       Grid.Column="0"
+                       TextColor="Black"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Margin="0, 0, 0, 0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <!-- Дуже жирні літери B та S -->
+                            <Span Text="Bl" FontAttributes="Bold" FontSize="Title" />
+                            <Span Text="ue" FontSize="Large" />
+                            <Span Text="S" FontAttributes="Bold" FontSize="Title" />
+                            <Span Text="and Hotel" FontSize="Large" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Image Grid.Row="1"
+                       Source="https://cdn-icons-png.flaticon.com/128/929/929566.png"
+                       WidthRequest="13"
+                       HorizontalOptions="End"/>
+                <Image Grid.Row="1"
+                       Source="https://cdn-icons-png.flaticon.com/128/929/929566.png"
+                       Grid.Column="1"
+                       WidthRequest="13"/>
+                <Image Grid.Row="1"
+                       Source="https://cdn-icons-png.flaticon.com/128/929/929566.png"
+                       Grid.Column="2"
+                       WidthRequest="13"/>
+                <Image Grid.Row="1"
+                       Source="https://cdn-icons-png.flaticon.com/128/929/929566.png"
+                       Grid.Column="3"
+                       WidthRequest="13"
+                       HorizontalOptions="Start"/>
+            </Grid>
+        </Grid>
+
+        <Frame x:Name="Account_frame"
+               BackgroundColor="LightGray"
+               Padding="10"
+               CornerRadius="5"
+               VerticalOptions="Center"
+               HorizontalOptions="End"
+               WidthRequest="180"
+               Margin="0, 5, 10, 0"
+               IsVisible="False"
+               >
+            <Grid RowDefinitions="Auto, Auto"
+                  ColumnDefinitions="Auto"
+                  RowSpacing="5"
+                  Padding="5"
+                  BackgroundColor="#f5f2e6"
+                  Grid.ZIndex="1">
+                <Label x:Name="LogOutLabel"
+                       Grid.Row="1"
+                       FontSize="16"
+                       TextColor="#c4372d"
+                       HorizontalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLogOutLabelTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label x:Name="closeLabel"
+                       Grid.Row="2"
+                       FontSize="16"
+                       HorizontalOptions="Center" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCloseLabelTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Frame>
+    </StackLayout>
+</ContentPage>

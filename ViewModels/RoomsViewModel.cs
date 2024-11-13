@@ -4,135 +4,99 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using course4Hotel.Data;
 using course4Hotel.Models;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using course4Hotel.View;
+using Firebase.Database;
+using Firebase.Database.Query;
+using course4Hotel.DataServices;
+using System.Windows.Input;
 
 namespace course4Hotel.ViewModels
 {
     public partial class RoomsViewModel : ObservableObject
     {
-        private readonly DatabaseContext _context;
+        private readonly RoomService _roomService; // Сервіс для роботи з базою даних
+        public ObservableCollection<Room> RoomList { get; set; } // Список кімнат для відображення в UI
 
-        public RoomsViewModel(DatabaseContext context)
+        private string _selectedName; // Назва обраної кімнати
+        public string SelectedName
         {
-            _context = context;
+            get => _selectedName;
+            set => SetProperty(ref _selectedName, value); // Встановлення вибраної назви кімнати
         }
 
         [ObservableProperty]
-        private ObservableCollection<Room> _rooms = new();
+        private bool _isBusy; // Прапорець, що вказує, чи виконується операція (завантаження, збереження тощо)
 
         [ObservableProperty]
-        private Room _operatingRoom = new();
+        private string _busyText; // Текст, який відображається під час виконання операції
 
-        [ObservableProperty]
-        private bool _isBusy;
+        private Room _operatingRoom; // Кімната, яку зараз обробляють (для редагування або створення нової)
+        public Room OperatingRoom
+        {
+            get => _operatingRoom;
+            set => SetProperty(ref _operatingRoom, value); // Встановлення операційної кімнати
+        }
 
-        [ObservableProperty]
-        private string _busyText;
+        public ICommand SaveRoomCommand { get; } // Команда для збереження кімнати
+        public ICommand SetOperatingRoomCommand { get; } // Команда для вибору кімнати для редагування
+        public ICommand DeleteRoomCommand { get; } // Команда для видалення кімнати
 
-        [RelayCommand]
+        // Конструктор для ініціалізації сервісу та списку кімнат
+        public RoomsViewModel(FirebaseClient firebaseClient)
+        {
+            _roomService = new RoomService(firebaseClient); // Ініціалізація сервісу для роботи з Firebase
+            RoomList = new ObservableCollection<Room>(); // Створення порожнього списку кімнат
+            _ = LoadRoomsAsync(); // Завантаження кімнат з Firebase
+
+            // Команди для збереження, вибору та видалення кімнат
+            SaveRoomCommand = new Command(async () => await SaveRoomAsync(OperatingRoom));
+            SetOperatingRoomCommand = new Command<Room>(async (room) => await SetOperatingRoomAsync(room));
+            DeleteRoomCommand = new Command<Room>(async (room) => await DeleteRoomAsync(room));
+        }
+
+        // Завантаження кімнат з бази даних
         public async Task LoadRoomsAsync()
         {
-            await ExecuteAsync(async () =>
+            var rooms = await _roomService.GetAllRoomsAsync(); // Отримання списку кімнат з Firebase
+            RoomList.Clear(); // Очищення наявного списку кімнат
+            foreach (var room in rooms)
             {
-                Rooms.Clear();
-                var rooms = await _context.GetAllAsync<Room>();
-                if (rooms is not null && rooms.Any())
-                {
-                    Rooms ??= new ObservableCollection<Room>();
-
-                    foreach (var room in rooms)
-                    {
-                        Rooms.Add(room);
-                    }
-                }
-            }, "Fetching rooms...");
+                RoomList.Add(room); // Додавання отриманих кімнат до списку
+            }
         }
 
-        [RelayCommand]
-        private void SetOperatingRoom(Room? room) => OperatingRoom = room ?? new();
-
-        [RelayCommand]
-        private async Task SaveRoomAsync()
+        // Збереження кімнати в базі даних
+        public async Task SaveRoomAsync(Room room)
         {
-            if (OperatingRoom is null)
-                return;
+            await _roomService.SaveRoom(room); // Виклик методу збереження кімнати
+            await LoadRoomsAsync(); // Завантаження оновленого списку кімнат
+            OperatingRoom = new Room(); // Очищення операційної кімнати
+            SelectedName = string.Empty; // Очищення вибраної назви кімнати
+        }
 
-            var (isValid, errorMessage) = OperatingRoom.Validate();
-            if (!isValid)
+        // Видалення кімнати з бази даних
+        public async Task DeleteRoomAsync(Room room)
+        {
+            if (room == null || string.IsNullOrEmpty(room.Id)) // Перевірка на наявність кімнати та її ID
             {
-                await Shell.Current.DisplayAlert("Validation Error", errorMessage, "Ok");
+                await Shell.Current.DisplayAlert("Error", "Room or Room ID is null", "OK"); // Повідомлення про помилку
                 return;
             }
 
-            var busyText = OperatingRoom.Id == 0 ? "Creating Room..." : "Updating Room...";
-            await ExecuteAsync(async () =>
-            {
-                if (OperatingRoom.Id == 0)
-                {
-                    // Create room
-                    await _context.AddItemAsync<Room>(OperatingRoom);
-                    Rooms.Add(OperatingRoom);
-                }
-                else
-                {
-                    // Update room
-                    if (await _context.UpdateItemAsync<Room>(OperatingRoom))
-                    {
-                        var roomCopy = OperatingRoom.Clone;
-
-                        var index = Rooms.IndexOf(OperatingRoom);
-                        Rooms.RemoveAt(index);
-
-                        Rooms.Insert(index, roomCopy);
-                    }
-                    else
-                    {
-                        await Shell.Current.DisplayAlert("Error", "Room updation error", "Ok");
-                        return;
-                    }
-                }
-                SetOperatingRoomCommand.Execute(new());
-            }, busyText);
+            await _roomService.DeleteRoomAsync(room.Id); // Виклик методу для видалення кімнати з Firebase
+            RoomList.Remove(room); // Видалення кімнати зі списку
         }
 
-        [RelayCommand]
-        private async Task DeleteRoomAsync(int id)
+        // Встановлення операційної кімнати для редагування або створення
+        private async Task SetOperatingRoomAsync(Room? room)
         {
-            await ExecuteAsync(async () =>
-            {
-                if (await _context.DeleteItemByKeyAsync<Room>(id))
-                {
-                    var room = Rooms.FirstOrDefault(p => p.Id == id);
-                    Rooms.Remove(room);
-                }
-                else
-                {
-                    await Shell.Current.DisplayAlert("Delete Error", "Room was not deleted", "Ok");
-                }
-            }, "Deleting room...");
-        }
-        private async Task ExecuteAsync(Func<Task> operation, string? busyText = null)
-        {
-            IsBusy = true;
-            BusyText = busyText ?? "Processing...";
-            try
-            {
-                await operation?.Invoke();
-            }
-            catch (Exception ex)
-            {
-            }
-
-            finally
-            {
-                IsBusy = false;
-                BusyText = "Processing...";
-            }
+            OperatingRoom = room ?? new Room(); // Якщо кімната не знайдена, створюємо нову
+            SelectedName = room?.Name ?? string.Empty; // Встановлення назви кімнати або порожнього рядка
         }
     }
 }
+
 
