@@ -23,7 +23,7 @@ public partial class SinginPage : ContentPage
     {
         if (string.IsNullOrEmpty(EmailEntry.Text) || string.IsNullOrEmpty(PasswordEntry.Text))
         {
-            await DisplayAlert("Помилка", "Будь ласка, введіть електронну пошту та пароль", "ОК");
+            await DisplayAlert("РџРѕРјРёР»РєР°", "Р‘СѓРґСЊ Р»Р°СЃРєР°, РІРІРµРґС–С‚СЊ РµР»РµРєС‚СЂРѕРЅРЅСѓ РїРѕС€С‚Сѓ С‚Р° РїР°СЂРѕР»СЊ", "РћРљ");
             return;
         }
         else
@@ -33,28 +33,28 @@ public partial class SinginPage : ContentPage
 
             try
             {
-                // Отримати всіх користувачів з Firebase
+                // РћС‚СЂРёРјР°С‚Рё РІСЃС–С… РєРѕСЂРёСЃС‚СѓРІР°С‡С–РІ Р· Firebase
                 var users = await _firebaseClient
                     .Child("Users")
                     .OnceAsync<UserInform>();
 
-                // Перевірити, чи існує користувач з наданими електронною поштою та паролем
+                // РџРµСЂРµРІС–СЂРёС‚Рё, С‡Рё С–СЃРЅСѓС” РєРѕСЂРёСЃС‚СѓРІР°С‡ Р· РЅР°РґР°РЅРёРјРё РµР»РµРєС‚СЂРѕРЅРЅРѕСЋ РїРѕС€С‚РѕСЋ С‚Р° РїР°СЂРѕР»РµРј
                 var user = users.FirstOrDefault(u => u.Object.Email == email && u.Object.Password == password);
 
                 if (user != null)
                 {
                     UserId = user.Key; // Use 'Key' instead of 'Id'
 
-                    // Перевірка на isAdmin
+                    // РџРµСЂРµРІС–СЂРєР° РЅР° isAdmin
                     if (user.Object.IsAdmin)
                     {
-                        // Якщо користувач - адміністратор, перенаправити на сторінку входу для адміністраторів з FirebaseClient
+                        // РЇРєС‰Рѕ РєРѕСЂРёСЃС‚СѓРІР°С‡ - Р°РґРјС–РЅС–СЃС‚СЂР°С‚РѕСЂ, РїРµСЂРµРЅР°РїСЂР°РІРёС‚Рё РЅР° СЃС‚РѕСЂС–РЅРєСѓ РІС…РѕРґСѓ РґР»СЏ Р°РґРјС–РЅС–СЃС‚СЂР°С‚РѕСЂС–РІ Р· FirebaseClient
                         Shell.SetTabBarIsVisible(this, false);
                         await Navigation.PushAsync(new AdminSignIn(_firebaseClient));
                     }
                     else
                     {
-                        // Якщо користувач - не адміністратор, перенаправити на BookingReview
+                        // РЇРєС‰Рѕ РєРѕСЂРёСЃС‚СѓРІР°С‡ - РЅРµ Р°РґРјС–РЅС–СЃС‚СЂР°С‚РѕСЂ, РїРµСЂРµРЅР°РїСЂР°РІРёС‚Рё РЅР° BookingReview
                         Shell.SetTabBarIsVisible(this, false);
                         var bookingService = new BookingService(_firebaseClient); 
                         await Navigation.PushAsync(new UserNavigation(UserId, bookingService));
@@ -62,13 +62,13 @@ public partial class SinginPage : ContentPage
                 }
                 else
                 {
-                    await DisplayAlert("Помилка", "Невірна електронна пошта або пароль", "ОК");
+                    await DisplayAlert("РџРѕРјРёР»РєР°", "РќРµРІС–СЂРЅР° РµР»РµРєС‚СЂРѕРЅРЅР° РїРѕС€С‚Р° Р°Р±Рѕ РїР°СЂРѕР»СЊ", "РћРљ");
                 }
             }
             catch (Exception ex)
             {
-                // Обробка помилки (наприклад, проблеми з мережею)
-                await DisplayAlert("Помилка", "Сталася помилка при вході: " + ex.Message, "ОК");
+                // РћР±СЂРѕР±РєР° РїРѕРјРёР»РєРё (РЅР°РїСЂРёРєР»Р°Рґ, РїСЂРѕР±Р»РµРјРё Р· РјРµСЂРµР¶РµСЋ)
+                await DisplayAlert("РџРѕРјРёР»РєР°", "РЎС‚Р°Р»Р°СЃСЏ РїРѕРјРёР»РєР° РїСЂРё РІС…РѕРґС–: " + ex.Message, "РћРљ");
             }
         }
     }
