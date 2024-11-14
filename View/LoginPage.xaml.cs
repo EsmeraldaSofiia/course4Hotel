@@ -8,52 +8,52 @@ namespace course4Hotel.View;
 public partial class LoginPage : ContentPage
 {
 
-    // Поле для клієнта Firebase
+    // РџРѕР»Рµ РґР»СЏ РєР»С–С”РЅС‚Р° Firebase
     private readonly FirebaseClient _firebaseClient;
 
-    // Конструктор, що приймає об'єкт FirebaseClient
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ, С‰Рѕ РїСЂРёР№РјР°С” РѕР±'С”РєС‚ FirebaseClient
     public LoginPage(FirebaseClient firebaseClient)
     {
         InitializeComponent();
         _firebaseClient = firebaseClient;
     }
 
-    // Локальна колекція для зберігання інформації про користувачів
+    // Р›РѕРєР°Р»СЊРЅР° РєРѕР»РµРєС†С–СЏ РґР»СЏ Р·Р±РµСЂС–РіР°РЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С— РїСЂРѕ РєРѕСЂРёСЃС‚СѓРІР°С‡С–РІ
     private List<UserInform> _userCollection = new List<UserInform>();
 
-    // Обробник події для переходу до сторінки реєстрації
+    // РћР±СЂРѕР±РЅРёРє РїРѕРґС–С— РґР»СЏ РїРµСЂРµС…РѕРґСѓ РґРѕ СЃС‚РѕСЂС–РЅРєРё СЂРµС”СЃС‚СЂР°С†С–С—
     private async void OnRegisterLabelTapped(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new SinginPage(_firebaseClient));
     }
 
-    // Обробник події для кнопки входу/реєстрації
+    // РћР±СЂРѕР±РЅРёРє РїРѕРґС–С— РґР»СЏ РєРЅРѕРїРєРё РІС…РѕРґСѓ/СЂРµС”СЃС‚СЂР°С†С–С—
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        // Перевірка на заповнення всіх полів
+        // РџРµСЂРµРІС–СЂРєР° РЅР° Р·Р°РїРѕРІРЅРµРЅРЅСЏ РІСЃС–С… РїРѕР»С–РІ
         if (string.IsNullOrEmpty(FullNameEntry.Text) || string.IsNullOrEmpty(PasswordEntry.Text) || string.IsNullOrEmpty(EmailEntry.Text) || string.IsNullOrEmpty(PhoneNumberEntry.Text))
         {
-            await DisplayAlert("Помилка", "Будь ласка, заповніть всі поля", "ОК");
+            await DisplayAlert("РџРѕРјРёР»РєР°", "Р‘СѓРґСЊ Р»Р°СЃРєР°, Р·Р°РїРѕРІРЅС–С‚СЊ РІСЃС– РїРѕР»СЏ", "РћРљ");
             return;
         }
         else
         {
-            // Перевірка на існування електронної пошти
+            // РџРµСЂРµРІС–СЂРєР° РЅР° С–СЃРЅСѓРІР°РЅРЅСЏ РµР»РµРєС‚СЂРѕРЅРЅРѕС— РїРѕС€С‚Рё
             var userExists = await CheckIfEmailExists(EmailEntry.Text);
             if (userExists)
             {
-                await DisplayAlert("Помилка", "Користувач з такою електронною поштою вже існує", "ОК");
+                await DisplayAlert("РџРѕРјРёР»РєР°", "РљРѕСЂРёСЃС‚СѓРІР°С‡ Р· С‚Р°РєРѕСЋ РµР»РµРєС‚СЂРѕРЅРЅРѕСЋ РїРѕС€С‚РѕСЋ РІР¶Рµ С–СЃРЅСѓС”", "РћРљ");
                 return;
             }
 
-            // Перевірка формату електронної пошти
+            // РџРµСЂРµРІС–СЂРєР° С„РѕСЂРјР°С‚Сѓ РµР»РµРєС‚СЂРѕРЅРЅРѕС— РїРѕС€С‚Рё
             if (!EmailEntry.Text.Contains("@") || !EmailEntry.Text.Contains("."))
             {
-                await DisplayAlert("Помилка", "Введіть коректну електронну пошту", "ОК");
+                await DisplayAlert("РџРѕРјРёР»РєР°", "Р’РІРµРґС–С‚СЊ РєРѕСЂРµРєС‚РЅСѓ РµР»РµРєС‚СЂРѕРЅРЅСѓ РїРѕС€С‚Сѓ", "РћРљ");
                 return;
             }
 
-            // Створення нового екземпляру користувача
+            // РЎС‚РІРѕСЂРµРЅРЅСЏ РЅРѕРІРѕРіРѕ РµРєР·РµРјРїР»СЏСЂСѓ РєРѕСЂРёСЃС‚СѓРІР°С‡Р°
             var newUser = new UserInform
             {
                 FullName = FullNameEntry.Text,
@@ -64,31 +64,31 @@ public partial class LoginPage : ContentPage
                 AdminCode = "0"
             };
 
-            // Додавання нового користувача до колекції
+            // Р”РѕРґР°РІР°РЅРЅСЏ РЅРѕРІРѕРіРѕ РєРѕСЂРёСЃС‚СѓРІР°С‡Р° РґРѕ РєРѕР»РµРєС†С–С—
             _userCollection.Add(newUser);
 
             await _firebaseClient.Child("Users").PostAsync(newUser);
 
-            // Очищення поля вводу
+            // РћС‡РёС‰РµРЅРЅСЏ РїРѕР»СЏ РІРІРѕРґСѓ
             FullNameEntry.Text = string.Empty;
             PasswordEntry.Text = string.Empty;
             EmailEntry.Text = string.Empty;
             PhoneNumberEntry.Text = string.Empty;
 
-            // Перехід до сторінки входу
+            // РџРµСЂРµС…С–Рґ РґРѕ СЃС‚РѕСЂС–РЅРєРё РІС…РѕРґСѓ
             await Navigation.PushAsync(new SinginPage(_firebaseClient));
         }
     }
 
-    // Метод для перевірки, чи існує користувач із заданою електронною поштою
+    // РњРµС‚РѕРґ РґР»СЏ РїРµСЂРµРІС–СЂРєРё, С‡Рё С–СЃРЅСѓС” РєРѕСЂРёСЃС‚СѓРІР°С‡ С–Р· Р·Р°РґР°РЅРѕСЋ РµР»РµРєС‚СЂРѕРЅРЅРѕСЋ РїРѕС€С‚РѕСЋ
     private async Task<bool> CheckIfEmailExists(string email)
     {
-        // Отримуємо всі користувачі, де електронна пошта відповідає заданій
+        // РћС‚СЂРёРјСѓС”РјРѕ РІСЃС– РєРѕСЂРёСЃС‚СѓРІР°С‡С–, РґРµ РµР»РµРєС‚СЂРѕРЅРЅР° РїРѕС€С‚Р° РІС–РґРїРѕРІС–РґР°С” Р·Р°РґР°РЅС–Р№
         var users = await _firebaseClient
             .Child("Users")
             .OnceAsync<UserInform>(); // Change User to UserInform
 
-        // Перевіряємо, чи існує користувач з відповідною електронною поштою
+        // РџРµСЂРµРІС–СЂСЏС”РјРѕ, С‡Рё С–СЃРЅСѓС” РєРѕСЂРёСЃС‚СѓРІР°С‡ Р· РІС–РґРїРѕРІС–РґРЅРѕСЋ РµР»РµРєС‚СЂРѕРЅРЅРѕСЋ РїРѕС€С‚РѕСЋ
         return users.Any(u => u.Object.Email == email);
     }
 }
