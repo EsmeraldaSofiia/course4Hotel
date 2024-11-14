@@ -15,22 +15,22 @@ public partial class AdminSignIn : ContentPage
     }
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        var enteredAdminCode = AdminCodeEntry.Text; // Код, введений користувачем
+        var enteredAdminCode = AdminCodeEntry.Text; // РљРѕРґ, РІРІРµРґРµРЅРёР№ РєРѕСЂРёСЃС‚СѓРІР°С‡РµРј
 
         try
         {
-            // Отримуємо всіх користувачів з бази даних Firebase
+            // РћС‚СЂРёРјСѓС”РјРѕ РІСЃС–С… РєРѕСЂРёСЃС‚СѓРІР°С‡С–РІ Р· Р±Р°Р·Рё РґР°РЅРёС… Firebase
             var users = await _firebaseClient
                 .Child("Users")
                 .OnceAsync<UserInform>();
 
-            // Знаходимо адміністратора за його AdminCode
+            // Р—РЅР°С…РѕРґРёРјРѕ Р°РґРјС–РЅС–СЃС‚СЂР°С‚РѕСЂР° Р·Р° Р№РѕРіРѕ AdminCode
             var adminUser = users.FirstOrDefault(u => u.Object.IsAdmin && u.Object.AdminCode == enteredAdminCode);
 
             if (adminUser != null)
             {
-                // Якщо AdminCode правильний, створюємо екземпляр RoomsViewModel та переходимо на сторінку AdminRooms
-                /*var roomsViewModel = new RoomsViewModel(_firebaseClient); // Створюємо ViewModel
+                // РЇРєС‰Рѕ AdminCode РїСЂР°РІРёР»СЊРЅРёР№, СЃС‚РІРѕСЂСЋС”РјРѕ РµРєР·РµРјРїР»СЏСЂ RoomsViewModel С‚Р° РїРµСЂРµС…РѕРґРёРјРѕ РЅР° СЃС‚РѕСЂС–РЅРєСѓ AdminRooms
+                /*var roomsViewModel = new RoomsViewModel(_firebaseClient); // РЎС‚РІРѕСЂСЋС”РјРѕ ViewModel
                 await Navigation.PushAsync(new AdminRooms(roomsViewModel));*/
                 //await Shell.Current.GoToAsync("//AppShell");
                 await Navigation.PushAsync(new AppShell());
@@ -38,14 +38,14 @@ public partial class AdminSignIn : ContentPage
             }
             else
             {
-                // Якщо AdminCode неправильний, показуємо повідомлення про помилку
-                await DisplayAlert("Помилка", "Невірний код адміністратора", "ОК");
+                // РЇРєС‰Рѕ AdminCode РЅРµРїСЂР°РІРёР»СЊРЅРёР№, РїРѕРєР°Р·СѓС”РјРѕ РїРѕРІС–РґРѕРјР»РµРЅРЅСЏ РїСЂРѕ РїРѕРјРёР»РєСѓ
+                await DisplayAlert("РџРѕРјРёР»РєР°", "РќРµРІС–СЂРЅРёР№ РєРѕРґ Р°РґРјС–РЅС–СЃС‚СЂР°С‚РѕСЂР°", "РћРљ");
             }
         }
         catch (Exception ex)
         {
-            // Обробка помилки (наприклад, проблеми з мережею)
-            await DisplayAlert("Помилка", "Сталася помилка при вході: " + ex.Message, "ОК");
+            // РћР±СЂРѕР±РєР° РїРѕРјРёР»РєРё (РЅР°РїСЂРёРєР»Р°Рґ, РїСЂРѕР±Р»РµРјРё Р· РјРµСЂРµР¶РµСЋ)
+            await DisplayAlert("РџРѕРјРёР»РєР°", "РЎС‚Р°Р»Р°СЃСЏ РїРѕРјРёР»РєР° РїСЂРё РІС…РѕРґС–: " + ex.Message, "РћРљ");
         }
     }
 } 
