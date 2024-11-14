@@ -8,13 +8,13 @@ namespace course4Hotel.View;
 
 public partial class Services : ContentPage
 {
-    // Поля для зберігання інформації про користувача, FirebaseClient та ViewModel
+    // РџРѕР»СЏ РґР»СЏ Р·Р±РµСЂС–РіР°РЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С— РїСЂРѕ РєРѕСЂРёСЃС‚СѓРІР°С‡Р°, FirebaseClient С‚Р° ViewModel
     private string userId;
     private readonly FirebaseClient _firebaseClient;
     private readonly OfServicesViewModel _ofServicesViewModel;
     private readonly ServicesService _servicesService;
 
-    // Конструктор за замовчуванням
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р·Р° Р·Р°РјРѕРІС‡СѓРІР°РЅРЅСЏРј
     public Services()
     {
         InitializeComponent();
@@ -26,7 +26,7 @@ public partial class Services : ContentPage
         LoadServicesAsync();
     }
 
-    // Конструктор, що приймає ViewModel
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ, С‰Рѕ РїСЂРёР№РјР°С” ViewModel
     public Services(OfServicesViewModel ofServicesViewModel)
     {
         userId = UserSession.UserId;
@@ -37,25 +37,25 @@ public partial class Services : ContentPage
         BindingContext = _ofServicesViewModel;
     }
 
-    // Завантаження всіх послуг
+    // Р—Р°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ РІСЃС–С… РїРѕСЃР»СѓРі
     public async void LoadServicesAsync()
     {
         await _ofServicesViewModel.LoadOfServicesAsync();
     }
 
-    // Обробник події для кнопки показу кнопки виходу з акаунту
+    // РћР±СЂРѕР±РЅРёРє РїРѕРґС–С— РґР»СЏ РєРЅРѕРїРєРё РїРѕРєР°Р·Сѓ РєРЅРѕРїРєРё РІРёС…РѕРґСѓ Р· Р°РєР°СѓРЅС‚Сѓ
     public void BlueButton_Clicked(object sender, EventArgs e)
     {
         Account_frame.IsVisible = !Account_frame.IsVisible;
     }
 
-    // Обробник події для кнопки замовлення послуги
+    // РћР±СЂРѕР±РЅРёРє РїРѕРґС–С— РґР»СЏ РєРЅРѕРїРєРё Р·Р°РјРѕРІР»РµРЅРЅСЏ РїРѕСЃР»СѓРіРё
     public async void OrderButton_Clicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Послуга була успішно замовлена,", "очікуйте замовлене найближчим часом", "OK");
+        await DisplayAlert("РџРѕСЃР»СѓРіР° Р±СѓР»Р° СѓСЃРїС–С€РЅРѕ Р·Р°РјРѕРІР»РµРЅР°,", "РѕС‡С–РєСѓР№С‚Рµ Р·Р°РјРѕРІР»РµРЅРµ РЅР°Р№Р±Р»РёР¶С‡РёРј С‡Р°СЃРѕРј", "OK");
     }
 
-    // Обробник події для кнопки виходу з акаунту
+    // РћР±СЂРѕР±РЅРёРє РїРѕРґС–С— РґР»СЏ РєРЅРѕРїРєРё РІРёС…РѕРґСѓ Р· Р°РєР°СѓРЅС‚Сѓ
     public async void OnLogOutLabelTapped(object sender, TappedEventArgs e)
     {
         Account_frame.IsVisible = false;
@@ -64,16 +64,16 @@ public partial class Services : ContentPage
         Shell.SetTabBarIsVisible(this, false); // Corrected this line
     }
 
-    // Викликається при появі сторінки на екрані
+    // Р’РёРєР»РёРєР°С”С‚СЊСЃСЏ РїСЂРё РїРѕСЏРІС– СЃС‚РѕСЂС–РЅРєРё РЅР° РµРєСЂР°РЅС–
     protected override async void OnAppearing()
     {
         base.OnAppearing();
         LoadServicesAsync();
     }
 
-    // Обробник події для кнопки показу інформації про автора
+    // РћР±СЂРѕР±РЅРёРє РїРѕРґС–С— РґР»СЏ РєРЅРѕРїРєРё РїРѕРєР°Р·Сѓ С–РЅС„РѕСЂРјР°С†С–С— РїСЂРѕ Р°РІС‚РѕСЂР°
     public async void ShowAuthor_Button_Clicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Про автора", "цей застосунок був створений у ході виконання курсового проєкту \n\nстуденткою 45 групи спеціальності 121\nВСП 'ППФК НТУ 'ХПІ''\n\nЖаботинською Софією", "Чудово!");
+        await DisplayAlert("РџСЂРѕ Р°РІС‚РѕСЂР°", "С†РµР№ Р·Р°СЃС‚РѕСЃСѓРЅРѕРє Р±СѓРІ СЃС‚РІРѕСЂРµРЅРёР№ Сѓ С…РѕРґС– РІРёРєРѕРЅР°РЅРЅСЏ РєСѓСЂСЃРѕРІРѕРіРѕ РїСЂРѕС”РєС‚Сѓ \n\nСЃС‚СѓРґРµРЅС‚РєРѕСЋ 45 РіСЂСѓРїРё СЃРїРµС†С–Р°Р»СЊРЅРѕСЃС‚С– 121\nР’РЎРџ 'РџРџР¤Рљ РќРўРЈ 'РҐРџР†''\n\nР–Р°Р±РѕС‚РёРЅСЃСЊРєРѕСЋ РЎРѕС„С–С”СЋ", "Р§СѓРґРѕРІРѕ!");
     }
 }
