@@ -8,39 +8,39 @@ namespace course4Hotel.View;
 
 public partial class BookingReview : ContentPage
 {
-    // Ідентифікатор користувача
+    // Р†РґРµРЅС‚РёС„С–РєР°С‚РѕСЂ РєРѕСЂРёСЃС‚СѓРІР°С‡Р°
     private string userId;
-    // Клієнт Firebase для роботи з базою даних
+    // РљР»С–С”РЅС‚ Firebase РґР»СЏ СЂРѕР±РѕС‚Рё Р· Р±Р°Р·РѕСЋ РґР°РЅРёС…
     private readonly FirebaseClient _firebaseClient;
-    // ViewModel для управління бронюваннями
+    // ViewModel РґР»СЏ СѓРїСЂР°РІР»С–РЅРЅСЏ Р±СЂРѕРЅСЋРІР°РЅРЅСЏРјРё
     private readonly BookingViewModel _bookingViewModel;
-    // Сервіс для роботи з бронюваннями
+    // РЎРµСЂРІС–СЃ РґР»СЏ СЂРѕР±РѕС‚Рё Р· Р±СЂРѕРЅСЋРІР°РЅРЅСЏРјРё
     private readonly BookingService _bookingService;
 
-    // Конструктор за замовчуванням
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р·Р° Р·Р°РјРѕРІС‡СѓРІР°РЅРЅСЏРј
     public BookingReview()
     {
         InitializeComponent();
 
-        // Ініціалізація UserId, FirebaseClient і BookingService
+        // Р†РЅС–С†С–Р°Р»С–Р·Р°С†С–СЏ UserId, FirebaseClient С– BookingService
         userId = UserSession.UserId;
         _firebaseClient = new FirebaseClient("https://course4hotel-default-rtdb.firebaseio.com/");
         _bookingService = new BookingService(_firebaseClient);
 
-        // Ініціалізація BookingViewModel і прив'язка до контексту
+        // Р†РЅС–С†С–Р°Р»С–Р·Р°С†С–СЏ BookingViewModel С– РїСЂРёРІ'СЏР·РєР° РґРѕ РєРѕРЅС‚РµРєСЃС‚Сѓ
         var bookingService = new BookingService(_firebaseClient);
         _bookingViewModel = new BookingViewModel(bookingService);
         BindingContext = _bookingViewModel;
         LoadAllBookingsAsync(userId);
     }
 
-    // Метод для завантаження всіх бронювань для вказаного користувача
+    // РњРµС‚РѕРґ РґР»СЏ Р·Р°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ РІСЃС–С… Р±СЂРѕРЅСЋРІР°РЅСЊ РґР»СЏ РІРєР°Р·Р°РЅРѕРіРѕ РєРѕСЂРёСЃС‚СѓРІР°С‡Р°
     public async void LoadAllBookingsAsync(string userId)
     {
         await _bookingViewModel.LoadBookingsAsync(userId);
     }
 
-    // Конструктор, що приймає BookingViewModel
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ, С‰Рѕ РїСЂРёР№РјР°С” BookingViewModel
     public BookingReview(BookingViewModel bookingViewModel)
     {
         userId = UserSession.UserId;
@@ -51,13 +51,13 @@ public partial class BookingReview : ContentPage
         BindingContext = _bookingViewModel;
     }
 
-    // Обробник події для перемикання видимості блоку облікового запису
+    // РћР±СЂРѕР±РЅРёРє РїРѕРґС–С— РґР»СЏ РїРµСЂРµРјРёРєР°РЅРЅСЏ РІРёРґРёРјРѕСЃС‚С– Р±Р»РѕРєСѓ РѕР±Р»С–РєРѕРІРѕРіРѕ Р·Р°РїРёСЃСѓ
     public void BlueButton_Clicked(object sender, EventArgs e)
     {
         Account_frame.IsVisible = !Account_frame.IsVisible;
     }
 
-    // Обробник події для виходу з облікового запису
+    // РћР±СЂРѕР±РЅРёРє РїРѕРґС–С— РґР»СЏ РІРёС…РѕРґСѓ Р· РѕР±Р»С–РєРѕРІРѕРіРѕ Р·Р°РїРёСЃСѓ
     public async void OnLogOutLabelTapped(object sender, TappedEventArgs e)
     {
         Account_frame.IsVisible = false;
@@ -66,16 +66,16 @@ public partial class BookingReview : ContentPage
         Shell.SetTabBarIsVisible(this, false);
     }
 
-    // Метод, що викликається при появі сторінки на екрані
+    // РњРµС‚РѕРґ, С‰Рѕ РІРёРєР»РёРєР°С”С‚СЊСЃСЏ РїСЂРё РїРѕСЏРІС– СЃС‚РѕСЂС–РЅРєРё РЅР° РµРєСЂР°РЅС–
     protected override async void OnAppearing()
     {
     base.OnAppearing();
     LoadAllBookingsAsync(userId);
     }
 
-    // Обробник події для показу інформації про автора
+    // РћР±СЂРѕР±РЅРёРє РїРѕРґС–С— РґР»СЏ РїРѕРєР°Р·Сѓ С–РЅС„РѕСЂРјР°С†С–С— РїСЂРѕ Р°РІС‚РѕСЂР°
     public async void ShowAuthor_Button_Clicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Про автора", "цей застосунок був створений у ході виконання курсового проєкту \n\nстуденткою 45 групи спеціальності 121\nВСП 'ППФК НТУ 'ХПІ''\n\nЖаботинською Софією", "Чудово!");
+        await DisplayAlert("РџСЂРѕ Р°РІС‚РѕСЂР°", "С†РµР№ Р·Р°СЃС‚РѕСЃСѓРЅРѕРє Р±СѓРІ СЃС‚РІРѕСЂРµРЅРёР№ Сѓ С…РѕРґС– РІРёРєРѕРЅР°РЅРЅСЏ РєСѓСЂСЃРѕРІРѕРіРѕ РїСЂРѕС”РєС‚Сѓ \n\nСЃС‚СѓРґРµРЅС‚РєРѕСЋ 45 РіСЂСѓРїРё СЃРїРµС†С–Р°Р»СЊРЅРѕСЃС‚С– 121\nР’РЎРџ 'РџРџР¤Рљ РќРўРЈ 'РҐРџР†''\n\nР–Р°Р±РѕС‚РёРЅСЃСЊРєРѕСЋ РЎРѕС„С–С”СЋ", "Р§СѓРґРѕРІРѕ!");
     }
 }
