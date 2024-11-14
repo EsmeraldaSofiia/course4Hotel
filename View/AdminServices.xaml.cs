@@ -9,57 +9,57 @@ public partial class AdminServices : ContentPage
     private readonly OfServicesViewModel _viewModel;
     private readonly FirebaseClient _firebaseClient;
 
-    // Прапорець для відстеження стану видимості форми
+    // РџСЂР°РїРѕСЂРµС†СЊ РґР»СЏ РІС–РґСЃС‚РµР¶РµРЅРЅСЏ СЃС‚Р°РЅСѓ РІРёРґРёРјРѕСЃС‚С– С„РѕСЂРјРё
     private bool isServiceFormVisible = false;
 
     public AdminServices(OfServicesViewModel viewModel)
     {
         InitializeComponent();
 
-        // Прив'язка контексту сторінки до ViewModel
+        // РџСЂРёРІ'СЏР·РєР° РєРѕРЅС‚РµРєСЃС‚Сѓ СЃС‚РѕСЂС–РЅРєРё РґРѕ ViewModel
         BindingContext = viewModel;
         _viewModel = viewModel;
 
-        // Початковий стан форми — прихована
+        // РџРѕС‡Р°С‚РєРѕРІРёР№ СЃС‚Р°РЅ С„РѕСЂРјРё вЂ” РїСЂРёС…РѕРІР°РЅР°
         UpdateServiceFormVisibility();
     }
 
-    // Метод, який викликається, коли сторінка з'являється на екрані
+    // РњРµС‚РѕРґ, СЏРєРёР№ РІРёРєР»РёРєР°С”С‚СЊСЃСЏ, РєРѕР»Рё СЃС‚РѕСЂС–РЅРєР° Р·'СЏРІР»СЏС”С‚СЊСЃСЏ РЅР° РµРєСЂР°РЅС–
     protected async override void OnAppearing()
     {
         base.OnAppearing();
 
-        // Завантаження сервісів із бази даних
+        // Р—Р°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ СЃРµСЂРІС–СЃС–РІ С–Р· Р±Р°Р·Рё РґР°РЅРёС…
         await _viewModel.LoadOfServicesAsync();
     }
 
-    // Подія для показу/приховування форми додавання/редагування сервісу
+    // РџРѕРґС–СЏ РґР»СЏ РїРѕРєР°Р·Сѓ/РїСЂРёС…РѕРІСѓРІР°РЅРЅСЏ С„РѕСЂРјРё РґРѕРґР°РІР°РЅРЅСЏ/СЂРµРґР°РіСѓРІР°РЅРЅСЏ СЃРµСЂРІС–СЃСѓ
     private void UnfoldFormClicked(object sender, EventArgs e)
     {
-        // Зміна стану видимості форми
+        // Р—РјС–РЅР° СЃС‚Р°РЅСѓ РІРёРґРёРјРѕСЃС‚С– С„РѕСЂРјРё
         isServiceFormVisible = !isServiceFormVisible;
 
-        // Оновлення вигляду форми на основі нового стану
+        // РћРЅРѕРІР»РµРЅРЅСЏ РІРёРіР»СЏРґСѓ С„РѕСЂРјРё РЅР° РѕСЃРЅРѕРІС– РЅРѕРІРѕРіРѕ СЃС‚Р°РЅСѓ
         UpdateServiceFormVisibility();
     }
 
-    // Оновлення видимості форми та кнопки
+    // РћРЅРѕРІР»РµРЅРЅСЏ РІРёРґРёРјРѕСЃС‚С– С„РѕСЂРјРё С‚Р° РєРЅРѕРїРєРё
     private void UpdateServiceFormVisibility()
     {
         serviceBlock.IsVisible = isServiceFormVisible;
-        ServiceFormButton.Text = isServiceFormVisible ? "Згорнути" : "Додати сервіс";
+        ServiceFormButton.Text = isServiceFormVisible ? "Р—РіРѕСЂРЅСѓС‚Рё" : "Р”РѕРґР°С‚Рё СЃРµСЂРІС–СЃ";
     }
 
-    // Подія для додавання сервісу
+    // РџРѕРґС–СЏ РґР»СЏ РґРѕРґР°РІР°РЅРЅСЏ СЃРµСЂРІС–СЃСѓ
     private async void AddServiceButton_Clicked(object sender, EventArgs e)
     {
-        // Якщо поточний сервіс не існує, створити новий
+        // РЇРєС‰Рѕ РїРѕС‚РѕС‡РЅРёР№ СЃРµСЂРІС–СЃ РЅРµ С–СЃРЅСѓС”, СЃС‚РІРѕСЂРёС‚Рё РЅРѕРІРёР№
         if (_viewModel.OperatingOfService == null)
         {
             _viewModel.OperatingOfService = new OfService();
         }
 
-        // Заповнення властивостей сервісу
+        // Р—Р°РїРѕРІРЅРµРЅРЅСЏ РІР»Р°СЃС‚РёРІРѕСЃС‚РµР№ СЃРµСЂРІС–СЃСѓ
         if (!string.IsNullOrEmpty(ServiceNameEntry.Text) &&
             !string.IsNullOrEmpty(ServicePriceEntry.Text) &&
             !string.IsNullOrEmpty(ServiceDescriptionEntry.Text))
@@ -68,26 +68,26 @@ public partial class AdminServices : ContentPage
             _viewModel.OperatingOfService.Price = float.Parse(ServicePriceEntry.Text);
             _viewModel.OperatingOfService.Description = ServiceDescriptionEntry.Text;
 
-            // Збереження сервісу
+            // Р—Р±РµСЂРµР¶РµРЅРЅСЏ СЃРµСЂРІС–СЃСѓ
             await _viewModel.SaveOfServiceAsync(_viewModel.OperatingOfService);
             UpdateServiceFormVisibility();
 
-            // Очищення полів вводу
+            // РћС‡РёС‰РµРЅРЅСЏ РїРѕР»С–РІ РІРІРѕРґСѓ
             ServiceNameEntry.Text = string.Empty;
             ServicePriceEntry.Text = string.Empty;
             ServiceDescriptionEntry.Text = string.Empty;
 
-            // Приховування форми
+            // РџСЂРёС…РѕРІСѓРІР°РЅРЅСЏ С„РѕСЂРјРё
             isServiceFormVisible = false;
             UpdateServiceFormVisibility();
         }
         else
         {
-            await DisplayAlert("Помилка", "Будь ласка, заповніть всі поля", "ОК");
+            await DisplayAlert("РџРѕРјРёР»РєР°", "Р‘СѓРґСЊ Р»Р°СЃРєР°, Р·Р°РїРѕРІРЅС–С‚СЊ РІСЃС– РїРѕР»СЏ", "РћРљ");
         }
     }
 
-    //Подія для редагування сервісу
+    //РџРѕРґС–СЏ РґР»СЏ СЂРµРґР°РіСѓРІР°РЅРЅСЏ СЃРµСЂРІС–СЃСѓ
     private async void UpdateButton_Clicked(object sender, EventArgs e)
     {
         if (_viewModel.OperatingOfService != null)
@@ -96,7 +96,7 @@ public partial class AdminServices : ContentPage
             ServicePriceEntry.Text = _viewModel.OperatingOfService.Price.ToString();
             ServiceDescriptionEntry.Text = _viewModel.OperatingOfService.Description;
 
-            // Sпоказати форму, якщо вона прихована
+            // SРїРѕРєР°Р·Р°С‚Рё С„РѕСЂРјСѓ, СЏРєС‰Рѕ РІРѕРЅР° РїСЂРёС…РѕРІР°РЅР°
             if (!isServiceFormVisible)
             {
                 isServiceFormVisible = true;
@@ -105,15 +105,15 @@ public partial class AdminServices : ContentPage
         }
         else
         {
-            await DisplayAlert("Помилка", "Будь ласка, виберіть сервіс для оновлення", "ОК");
+            await DisplayAlert("РџРѕРјРёР»РєР°", "Р‘СѓРґСЊ Р»Р°СЃРєР°, РІРёР±РµСЂС–С‚СЊ СЃРµСЂРІС–СЃ РґР»СЏ РѕРЅРѕРІР»РµРЅРЅСЏ", "РћРљ");
         }
     }
-    // Подія для натиснення кнопки опцій акаунту
+    // РџРѕРґС–СЏ РґР»СЏ РЅР°С‚РёСЃРЅРµРЅРЅСЏ РєРЅРѕРїРєРё РѕРїС†С–Р№ Р°РєР°СѓРЅС‚Сѓ
     public void BlueButton_Clicked(object sender, EventArgs e)
     {
         Account_frame.IsVisible = !Account_frame.IsVisible;
     }
-    //Подія для виходу з акаунту
+    //РџРѕРґС–СЏ РґР»СЏ РІРёС…РѕРґСѓ Р· Р°РєР°СѓРЅС‚Сѓ
     public async void OnLogOutLabelTapped(object sender, TappedEventArgs e)
     {
         Account_frame.IsVisible = false;
@@ -123,6 +123,6 @@ public partial class AdminServices : ContentPage
     }
     public async void ShowAuthor_Button_Clicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Про автора", "цей застосунок був створений у ході виконання курсового проєкту \n\nстуденткою 45 групи спеціальності 121\nВСП 'ППФК НТУ 'ХПІ''\n\nЖаботинською Софією", "Чудово!");
+        await DisplayAlert("РџСЂРѕ Р°РІС‚РѕСЂР°", "С†РµР№ Р·Р°СЃС‚РѕСЃСѓРЅРѕРє Р±СѓРІ СЃС‚РІРѕСЂРµРЅРёР№ Сѓ С…РѕРґС– РІРёРєРѕРЅР°РЅРЅСЏ РєСѓСЂСЃРѕРІРѕРіРѕ РїСЂРѕС”РєС‚Сѓ \n\nСЃС‚СѓРґРµРЅС‚РєРѕСЋ 45 РіСЂСѓРїРё СЃРїРµС†С–Р°Р»СЊРЅРѕСЃС‚С– 121\nР’РЎРџ 'РџРџР¤Рљ РќРўРЈ 'РҐРџР†''\n\nР–Р°Р±РѕС‚РёРЅСЃСЊРєРѕСЋ РЎРѕС„С–С”СЋ", "Р§СѓРґРѕРІРѕ!");
     }
 }
