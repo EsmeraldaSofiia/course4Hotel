@@ -11,7 +11,7 @@ namespace course4Hotel.Models
     {
         [PrimaryKey, AutoIncrement]
         public string Id { get; set; }
-        public string RoomId { get; set; } // Foreign key to Room table
+        public string RoomId { get; set; }
 
         public int RoomNumber { get; set; }
         public DateTime BookingDate { get; set; }
