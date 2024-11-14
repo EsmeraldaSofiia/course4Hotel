@@ -12,35 +12,35 @@ public partial class AdminRooms : ContentPage
     private readonly RoomsViewModel _viewModel;
     private readonly FirebaseClient _firebaseClient;
 
-    // Прапорець для відстеження стану видимості форми
+    // РџСЂР°РїРѕСЂРµС†СЊ РґР»СЏ РІС–РґСЃС‚РµР¶РµРЅРЅСЏ СЃС‚Р°РЅСѓ РІРёРґРёРјРѕСЃС‚С– С„РѕСЂРјРё
     private bool isRoomFormVisible = false;
 
     public AdminRooms(RoomsViewModel viewModel, FirebaseClient firebaseClient) 
     {
         InitializeComponent();
 
-        // Прив'язка контексту сторінки до ViewModel
+        // РџСЂРёРІ'СЏР·РєР° РєРѕРЅС‚РµРєСЃС‚Сѓ СЃС‚РѕСЂС–РЅРєРё РґРѕ ViewModel
         BindingContext = viewModel;
         _viewModel = viewModel;
         _firebaseClient = firebaseClient;
-        // Початковий стан форми — прихована
+        // РџРѕС‡Р°С‚РєРѕРІРёР№ СЃС‚Р°РЅ С„РѕСЂРјРё вЂ” РїСЂРёС…РѕРІР°РЅР°
         UpdateRoomFormVisibility();
     }
 
-    // Метод, який викликається, коли сторінка з'являється на екрані
+    // РњРµС‚РѕРґ, СЏРєРёР№ РІРёРєР»РёРєР°С”С‚СЊСЃСЏ, РєРѕР»Рё СЃС‚РѕСЂС–РЅРєР° Р·'СЏРІР»СЏС”С‚СЊСЃСЏ РЅР° РµРєСЂР°РЅС–
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        // Завантаження номерів із бази даних
+        // Р—Р°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ РЅРѕРјРµСЂС–РІ С–Р· Р±Р°Р·Рё РґР°РЅРёС…
         await _viewModel.LoadRoomsAsync();
     }
 
-    // Обробник події для кнопки розгортання форми
+    // РћР±СЂРѕР±РЅРёРє РїРѕРґС–С— РґР»СЏ РєРЅРѕРїРєРё СЂРѕР·РіРѕСЂС‚Р°РЅРЅСЏ С„РѕСЂРјРё
     private void UnfoldFormClicked(object sender, EventArgs e)
     {
         if (isRoomFormVisible)
         {
-            // Очищення полів форми при закритті
+            // РћС‡РёС‰РµРЅРЅСЏ РїРѕР»С–РІ С„РѕСЂРјРё РїСЂРё Р·Р°РєСЂРёС‚С‚С–
             RoomNumberEntry.Text = string.Empty;
             PriceEntry.Text = string.Empty;
             floorEntry.Text = string.Empty;
@@ -50,14 +50,14 @@ public partial class AdminRooms : ContentPage
         UpdateRoomFormVisibility();
     }
 
-    // Оновлення видимості форми в залежності від прапорця
+    // РћРЅРѕРІР»РµРЅРЅСЏ РІРёРґРёРјРѕСЃС‚С– С„РѕСЂРјРё РІ Р·Р°Р»РµР¶РЅРѕСЃС‚С– РІС–Рґ РїСЂР°РїРѕСЂС†СЏ
     private void UpdateRoomFormVisibility()
     {
         roomBlock.IsVisible = isRoomFormVisible;
-        RoomFormButton.Text = isRoomFormVisible ? "Згорнути" : "Додати кімнату";
+        RoomFormButton.Text = isRoomFormVisible ? "Р—РіРѕСЂРЅСѓС‚Рё" : "Р”РѕРґР°С‚Рё РєС–РјРЅР°С‚Сѓ";
     }
 
-    // Обробник події для додавання нової кімнати
+    // РћР±СЂРѕР±РЅРёРє РїРѕРґС–С— РґР»СЏ РґРѕРґР°РІР°РЅРЅСЏ РЅРѕРІРѕС— РєС–РјРЅР°С‚Рё
     private async void AddRoomButton_Clicked(object sender, EventArgs e)
     {
         if (_viewModel == null)
@@ -66,33 +66,33 @@ public partial class AdminRooms : ContentPage
             return;
         }
 
-        // Ініціалізуємо OperatingRoom, якщо вона відсутня
+        // Р†РЅС–С†С–Р°Р»С–Р·СѓС”РјРѕ OperatingRoom, СЏРєС‰Рѕ РІРѕРЅР° РІС–РґСЃСѓС‚РЅСЏ
         if (_viewModel.OperatingRoom == null)
         {
             _viewModel.OperatingRoom = new Room();
         }
 
-        // Перевірка, що всі поля заповнені перед збереженням
+        // РџРµСЂРµРІС–СЂРєР°, С‰Рѕ РІСЃС– РїРѕР»СЏ Р·Р°РїРѕРІРЅРµРЅС– РїРµСЂРµРґ Р·Р±РµСЂРµР¶РµРЅРЅСЏРј
         if (string.IsNullOrWhiteSpace(RoomNumberEntry.Text) ||
             string.IsNullOrWhiteSpace(PriceEntry.Text) ||
             string.IsNullOrWhiteSpace(floorEntry.Text) ||
             string.IsNullOrWhiteSpace(DescriptionEntry.Text) ||
             string.IsNullOrEmpty(_viewModel.SelectedName))
         {
-            await Shell.Current.DisplayAlert("Помилка", "Будь ласка, заповніть всі поля", "ОК");
+            await Shell.Current.DisplayAlert("РџРѕРјРёР»РєР°", "Р‘СѓРґСЊ Р»Р°СЃРєР°, Р·Р°РїРѕРІРЅС–С‚СЊ РІСЃС– РїРѕР»СЏ", "РћРљ");
             return;
         }
 
         try
         {
-            // Ініціалізація значень для кімнати
+            // Р†РЅС–С†С–Р°Р»С–Р·Р°С†С–СЏ Р·РЅР°С‡РµРЅСЊ РґР»СЏ РєС–РјРЅР°С‚Рё
             _viewModel.OperatingRoom.Number = int.Parse(RoomNumberEntry.Text);
             _viewModel.OperatingRoom.Name = _viewModel.SelectedName;
             _viewModel.OperatingRoom.Price = float.Parse(PriceEntry.Text);
             _viewModel.OperatingRoom.floor = int.Parse(floorEntry.Text);
             _viewModel.OperatingRoom.Description = DescriptionEntry.Text;
 
-            // Перевірка на правильність даних
+            // РџРµСЂРµРІС–СЂРєР° РЅР° РїСЂР°РІРёР»СЊРЅС–СЃС‚СЊ РґР°РЅРёС…
             if (_viewModel.OperatingRoom.Number <= 0 ||
                 _viewModel.OperatingRoom.Price < 0 ||
                 _viewModel.OperatingRoom.floor < 0 ||
@@ -101,11 +101,11 @@ public partial class AdminRooms : ContentPage
                 await Shell.Current.DisplayAlert("Validation Error", "Please fill all fields correctly.", "Ok");
                 return;
             }
-            // Збереження кімнати в базу даних
+            // Р—Р±РµСЂРµР¶РµРЅРЅСЏ РєС–РјРЅР°С‚Рё РІ Р±Р°Р·Сѓ РґР°РЅРёС…
             await _viewModel.SaveRoomAsync(_viewModel.OperatingRoom);
             UpdateRoomFormVisibility();
 
-            // Очищення полів
+            // РћС‡РёС‰РµРЅРЅСЏ РїРѕР»С–РІ
             RoomNumberEntry.Text = string.Empty;
             PriceEntry.Text = string.Empty;
             floorEntry.Text = string.Empty;
@@ -116,11 +116,11 @@ public partial class AdminRooms : ContentPage
         }
         catch (FormatException)
         {
-            await Shell.Current.DisplayAlert("Помилка", "Некоректний формат числових полів", "ОК");
+            await Shell.Current.DisplayAlert("РџРѕРјРёР»РєР°", "РќРµРєРѕСЂРµРєС‚РЅРёР№ С„РѕСЂРјР°С‚ С‡РёСЃР»РѕРІРёС… РїРѕР»С–РІ", "РћРљ");
         }
     }
 
-    // Обробник події для оновлення інформації про кімнату
+    // РћР±СЂРѕР±РЅРёРє РїРѕРґС–С— РґР»СЏ РѕРЅРѕРІР»РµРЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С— РїСЂРѕ РєС–РјРЅР°С‚Сѓ
     private async void UpdateButton_Clicked(object sender, EventArgs e)
     {
         if (_viewModel.OperatingRoom != null)
@@ -138,17 +138,17 @@ public partial class AdminRooms : ContentPage
         }
         else
         {
-            await DisplayAlert("Помилка", "Будь ласка, виберіть номер для оновлення", "ОК");
+            await DisplayAlert("РџРѕРјРёР»РєР°", "Р‘СѓРґСЊ Р»Р°СЃРєР°, РІРёР±РµСЂС–С‚СЊ РЅРѕРјРµСЂ РґР»СЏ РѕРЅРѕРІР»РµРЅРЅСЏ", "РћРљ");
         }
     }
 
-    // Обробник події для перемикання видимості блоку облікового запису
+    // РћР±СЂРѕР±РЅРёРє РїРѕРґС–С— РґР»СЏ РїРµСЂРµРјРёРєР°РЅРЅСЏ РІРёРґРёРјРѕСЃС‚С– Р±Р»РѕРєСѓ РѕР±Р»С–РєРѕРІРѕРіРѕ Р·Р°РїРёСЃСѓ
     public void BlueButton_Clicked(object sender, EventArgs e)
     {
         Account_frame.IsVisible = !Account_frame.IsVisible;
     }
 
-    // Обробник події для виходу з облікового запису
+    // РћР±СЂРѕР±РЅРёРє РїРѕРґС–С— РґР»СЏ РІРёС…РѕРґСѓ Р· РѕР±Р»С–РєРѕРІРѕРіРѕ Р·Р°РїРёСЃСѓ
     public async void OnLogOutLabelTapped(object sender, TappedEventArgs e)
     {
         Account_frame.IsVisible = false;
@@ -156,9 +156,10 @@ public partial class AdminRooms : ContentPage
         Application.Current.MainPage = new NavigationPage(new View.SinginPage(_firebaseClient));
         Shell.SetTabBarIsVisible(this, false);
     }
-    // Обробник події для показу інформації про автора
+    // РћР±СЂРѕР±РЅРёРє РїРѕРґС–С— РґР»СЏ РїРѕРєР°Р·Сѓ С–РЅС„РѕСЂРјР°С†С–С— РїСЂРѕ Р°РІС‚РѕСЂР°
     public async void ShowAuthor_Button_Clicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Про автора", "цей застосунок був створений у ході виконання курсового проєкту \n\nстуденткою 45 групи спеціальності 121\nВСП 'ППФК НТУ 'ХПІ''\n\nЖаботинською Софією", "Чудово!");
+        await DisplayAlert("РџСЂРѕ Р°РІС‚РѕСЂР°", "С†РµР№ Р·Р°СЃС‚РѕСЃСѓРЅРѕРє Р±СѓРІ СЃС‚РІРѕСЂРµРЅРёР№ Сѓ С…РѕРґС– РІРёРєРѕРЅР°РЅРЅСЏ РєСѓСЂСЃРѕРІРѕРіРѕ РїСЂРѕС”РєС‚Сѓ \n\nСЃС‚СѓРґРµРЅС‚РєРѕСЋ 45 РіСЂСѓРїРё СЃРїРµС†С–Р°Р»СЊРЅРѕСЃС‚С– 121\nР’РЎРџ 'РџРџР¤Рљ РќРўРЈ 'РҐРџР†''\n\nР–Р°Р±РѕС‚РёРЅСЃСЊРєРѕСЋ РЎРѕС„С–С”СЋ", "Р§СѓРґРѕРІРѕ!");
     }
 }
+
